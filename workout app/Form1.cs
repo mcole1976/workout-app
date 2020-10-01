@@ -48,16 +48,16 @@ namespace workout_app
         public Form1()
         {
             InitializeComponent();
-            List<string> arts = new List<string>();
-            arts.Add("Please Choose Artist");
-            Dictionary<string, string> artistes = new Dictionary<string, string>();
-            string[] artists = Directory.GetDirectories(Properties.Settings.Default.MusicFiles);
-            foreach (string a in artists)
-            {
-                arts.Add(a.Split('\\').Last());
-                artistes.Add(a.Split('\\').Last(), a);
-            }
-            lbxArtist.DataSource = arts;
+            //List<string> arts = new List<string>();
+            //arts.Add("Please Choose Artist");
+            //Dictionary<string, string> artistes = new Dictionary<string, string>();
+            //string[] artists = Directory.GetDirectories(Properties.Settings.Default.MusicFiles);
+            //foreach (string a in artists)
+            //{
+            //    arts.Add(a.Split('\\').Last());
+            //    artistes.Add(a.Split('\\').Last(), a);
+            //}
+            //lbxArtist.DataSource = arts;
 
             List<string> wn = new List<string>();
             string nameth = Properties.Settings.Default.XMLLocation.ToString();
