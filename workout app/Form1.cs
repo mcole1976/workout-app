@@ -24,7 +24,7 @@ namespace workout_app
         int timer2 = 0;
         int timer3 = 0;
         int maxcount = 30;
-        WMPLib.WindowsMediaPlayer Player;
+
         Dictionary<string, string> workouts = fnSetDictionary();
 
         List<workout> mainWOList = new List<workout>();
@@ -197,7 +197,7 @@ namespace workout_app
             grdExercise.Columns.Add("WorkOut", "WorkOut");
             grdExercise.Columns.Add("Time", "Time");
             //grdExercise.DataSource = mainWOList;
-            foreach ( workout wk in mainWOList )
+            foreach (workout wk in mainWOList )
             {
                 grdExercise.Rows.Add(wk.Name, wk.Time);
             }
@@ -212,7 +212,13 @@ namespace workout_app
             lbTime.Text = w.Time.ToString();
             string v = "\\";
             string iFileLoc = Properties.Settings.Default.ExercisePics.ToString() + v + w.Name + ".jpg";
-           pBxExercise.Load( iFileLoc);
+            try { 
+            pBxExercise.Load(iFileLoc);
+            }
+            catch (Exception Ex)
+            {
+                pBxExercise.Load(Properties.Settings.Default.ExercisePics.ToString() + v + "Burpee" + ".jpg");
+            }
             //pBxExercise.im
             pBxExercise.SizeMode = PictureBoxSizeMode.AutoSize;
             tmrWrkOut.Interval = (w.Time * 1000);
@@ -275,7 +281,7 @@ namespace workout_app
             {
                 lbActivity.Text = "Well Done";
                 string v = "\\";
-                string iFileLoc = Properties.Settings.Default.ExercisePics.ToString() + v + "hold and lift" + ".jpg";
+                string iFileLoc = Properties.Settings.Default.ExercisePics.ToString() + v + "finish" + ".jpg";
                 pBxExercise.Load(iFileLoc);
                 tmrMain.Stop();
                 return;
