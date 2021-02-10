@@ -59,16 +59,7 @@ namespace workout_app
             //}
             //lbxArtist.DataSource = arts;
 
-            List<string> wn = new List<string>();
-            string nameth = Properties.Settings.Default.XMLLocation.ToString();
-
-            string[] workoutNames = Directory.GetFiles(Properties.Settings.Default.XMLLocation);
-            foreach (string a in workoutNames)
-            {
-                wn.Add(a.Split('\\').Last());
-                
-            }
-            lbxWorkOut.DataSource = wn;
+            fnSetFilesWkt();
 
             string v = "\\";
             string iFileLoc = Properties.Settings.Default.ExercisePics.ToString() + v + "alternate crunch" + ".jpg";
@@ -77,7 +68,21 @@ namespace workout_app
 
             pBxExercise.SizeMode = PictureBoxSizeMode.AutoSize;
 
-        } 
+        }
+
+        private void fnSetFilesWkt()
+        {
+            List<string> wn = new List<string>();
+            string nameth = Properties.Settings.Default.XMLLocation.ToString();
+
+            string[] workoutNames = Directory.GetFiles(Properties.Settings.Default.XMLLocation);
+            foreach (string a in workoutNames)
+            {
+                wn.Add(a.Split('\\').Last());
+
+            }
+            lbxWorkOut.DataSource = wn;
+        }
 
         //private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         //{
@@ -111,7 +116,7 @@ namespace workout_app
 
         //        string[] f = Directory.GetDirectories(res.Value);
         //        fs = f.ToList();
-                
+
         //        List<string> mf = new List<string>();
         //        if (fs.Count == 0)
         //        {
@@ -127,13 +132,13 @@ namespace workout_app
 
         //        foreach (string s in mf)
         //        {
-                    
+
         //                System.IO.FileInfo fi = new System.IO.FileInfo(s);
         //                if (fi.Extension == ".mp3" || fi.Extension == ".wma")
         //                {
         //                    musicF.Add(s);
         //                }
-                    
+
         //        }
         //        var t = new Thread (() => fnsetWorkOutMusic(musicF));
         //        t.Start();
@@ -143,12 +148,20 @@ namespace workout_app
 
         private void btnRun_Click(object sender, EventArgs e)
         {
+            fnBegin();
+            Exercise(mainWOList[0]);
+            workouts = null;
+            workouts = fnSetDictionary();
+        }
+
+        private void fnBegin()
+        {
             grdExercise.Rows.Clear();
             grdExercise.Columns.Clear();
             timer3 = 0;
-            
+
             KeyValuePair<string, string> routine = new KeyValuePair<string, string>();
-            
+
             string workout = lbxWorkOut.SelectedItem.ToString();
             var kvpRtne = workouts.Where(r => r.Value.Equals(workout));
 
@@ -158,10 +171,9 @@ namespace workout_app
                 break;
             }
 
-            fnSetExercisePattern(routine );
+            fnSetExercisePattern(routine);
 
-            Exercise(mainWOList[0]);
-
+            //
         }
 
         private void fnSetExercisePattern(KeyValuePair<string, string> wo)
@@ -341,19 +353,17 @@ namespace workout_app
 
         private void btnPause_Click(object sender, EventArgs e)
         {
-            string message = lbActivity.Text;
-            lbActivity.Text = "Paused 5 Seconds";
-            Thread.Sleep(5000);
-            lbActivity.Text = message;
+            fnSetFilesWkt();
+            workouts = null;
+            workouts = fnSetDictionary();
 
         }
 
-        private void btnPause60_Click(object sender, EventArgs e)
+        
+
+        private void lbxWorkOut_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string message = lbActivity.Text;
-            lbActivity.Text = "Paused 60 Seconds";
-            Thread.Sleep(60000);
-            lbActivity.Text = message;
+            fnBegin();
         }
     }
 }
