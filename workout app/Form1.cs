@@ -84,67 +84,7 @@ namespace workout_app
             lbxWorkOut.DataSource = wn;
         }
 
-        //private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        //{
-        //    ListBox l =  (ListBox)sender;
-
-        //    if (l.SelectedIndex > 0)
-        //    {
-
-        //        KeyValuePair<string, string> res = new KeyValuePair<string, string>();
-        //        Dictionary<string, string> artistes = new Dictionary<string, string>();
-        //        List<string> arts = new List<string>();
-        //        string[] artists = Directory.GetDirectories(Properties.Settings.Default.MusicFiles);
-        //        foreach (string a in artists)
-        //        {
-        //            arts.Add(a.Split('\\').Last());
-        //            artistes.Add(a.Split('\\').Last(), a);
-        //        }
-
-        //        string Artsy = lbxArtist.SelectedItem.ToString();
-        //        var kvpl = artistes.Where(r => r.Key.Equals(Artsy));
-        //        foreach (KeyValuePair<string, string> k in kvpl)
-        //        {
-        //            res = k;
-        //            break;
-        //        }
-
-
-        //        List<string> fs = new List<string>();
-        //        List<string> musicF = new List<string>();
-        //        //System.IO.FileInfo[] files = null;
-
-        //        string[] f = Directory.GetDirectories(res.Value);
-        //        fs = f.ToList();
-
-        //        List<string> mf = new List<string>();
-        //        if (fs.Count == 0)
-        //        {
-        //            mf.AddRange(Directory.GetFiles(res.Value));
-        //        }
-        //        else
-        //        {
-        //            foreach (string s in fs)
-        //            {
-        //                mf.AddRange(Directory.GetFiles(s));
-        //            }
-        //        }
-
-        //        foreach (string s in mf)
-        //        {
-
-        //                System.IO.FileInfo fi = new System.IO.FileInfo(s);
-        //                if (fi.Extension == ".mp3" || fi.Extension == ".wma")
-        //                {
-        //                    musicF.Add(s);
-        //                }
-
-        //        }
-        //        var t = new Thread (() => fnsetWorkOutMusic(musicF));
-        //        t.Start();
-        //    }
-
-        //}
+       
 
         private void btnRun_Click(object sender, EventArgs e)
         {
@@ -364,6 +304,38 @@ namespace workout_app
         private void lbxWorkOut_SelectedIndexChanged(object sender, EventArgs e)
         {
             fnBegin();
+        }
+
+        private void grdExercise_SelectionChanged(object sender, EventArgs e)
+        {
+            
+            //string iFileLoc = Properties.Settings.Default.ExercisePics.ToString() + v + "alternate crunch" + ".jpg";
+
+            //pBxExercise.ImageLocation = iFileLoc;
+
+            //pBxExercise.SizeMode = PictureBoxSizeMode.AutoSize;
+            int index = 0;
+            string pic = "alternate crunch";
+
+            foreach (DataGridViewRow r in grdExercise.Rows)
+            {
+                if(grdExercise.Rows[index].Selected == true)
+                {
+                    string v = "\\";
+                    pic = r.Cells[0].Value.ToString();
+
+                    string iFileLoc = Properties.Settings.Default.ExercisePics.ToString() + v + pic + ".jpg";
+
+                    pBxExercise.ImageLocation = iFileLoc;
+
+                    pBxExercise.SizeMode = PictureBoxSizeMode.AutoSize;
+
+                    
+                }
+                index++;
+            }
+
+
         }
     }
 }

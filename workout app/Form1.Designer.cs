@@ -198,6 +198,7 @@
             this.grdExercise.RowTemplate.Height = 24;
             this.grdExercise.Size = new System.Drawing.Size(749, 968);
             this.grdExercise.TabIndex = 19;
+            this.grdExercise.SelectionChanged += new System.EventHandler(this.grdExercise_SelectionChanged);
             // 
             // tmrMain
             // 
