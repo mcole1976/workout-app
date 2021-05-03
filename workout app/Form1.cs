@@ -321,15 +321,21 @@ namespace workout_app
             {
                 if(grdExercise.Rows[index].Selected == true)
                 {
-                    string v = "\\";
-                    pic = r.Cells[0].Value.ToString();
+                    try
+                    {
+                        string v = "\\";
+                        pic = r.Cells[0].Value.ToString();
 
-                    string iFileLoc = Properties.Settings.Default.ExercisePics.ToString() + v + pic + ".jpg";
+                        string iFileLoc = Properties.Settings.Default.ExercisePics.ToString() + v + pic + ".jpg";
 
-                    pBxExercise.ImageLocation = iFileLoc;
+                        pBxExercise.ImageLocation = iFileLoc;
 
-                    pBxExercise.SizeMode = PictureBoxSizeMode.AutoSize;
+                        pBxExercise.SizeMode = PictureBoxSizeMode.AutoSize;
+                    }
+                    catch (Exception ex)
+                    {
 
+                    }
                     
                 }
                 index++;
