@@ -35,31 +35,55 @@
             this.btnRun = new System.Windows.Forms.Button();
             this.tmrWrkOut = new System.Windows.Forms.Timer(this.components);
             this.lbActivity = new System.Windows.Forms.Label();
-            this.pBxExercise = new System.Windows.Forms.PictureBox();
             this.tmrWork2 = new System.Windows.Forms.Timer(this.components);
-            this.lbTimeTitle = new System.Windows.Forms.Label();
             this.lbClicker = new System.Windows.Forms.Label();
             this.lbExTtlTime = new System.Windows.Forms.Label();
             this.lbTime = new System.Windows.Forms.Label();
             this.lbNextLb = new System.Windows.Forms.Label();
             this.lbNextName = new System.Windows.Forms.Label();
-            this.grdExercise = new System.Windows.Forms.DataGridView();
             this.tmrMain = new System.Windows.Forms.Timer(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.lbRnTime = new System.Windows.Forms.Label();
             this.btnPause = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.pBxExercise)).BeginInit();
+            this.tbMain = new System.Windows.Forms.TabControl();
+            this.tbRoutine = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lbxType = new System.Windows.Forms.ListBox();
+            this.lcCurrEx = new System.Windows.Forms.Label();
+            this.grdExercise = new System.Windows.Forms.DataGridView();
+            this.pBxExercise = new System.Windows.Forms.PictureBox();
+            this.tbAddEx = new System.Windows.Forms.TabPage();
+            this.txtExName = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.lbErr = new System.Windows.Forms.Label();
+            this.btnExrcs = new System.Windows.Forms.Button();
+            this.lbExype = new System.Windows.Forms.Label();
+            this.chkNB = new System.Windows.Forms.CheckBox();
+            this.chkFB = new System.Windows.Forms.CheckBox();
+            this.ChkLG = new System.Windows.Forms.CheckBox();
+            this.chKAB = new System.Windows.Forms.CheckBox();
+            this.chkUB = new System.Windows.Forms.CheckBox();
+            this.chk30 = new System.Windows.Forms.CheckBox();
+            this.chk20 = new System.Windows.Forms.CheckBox();
+            this.chk15 = new System.Windows.Forms.CheckBox();
+            this.lbExtime = new System.Windows.Forms.Label();
+            this.chk10 = new System.Windows.Forms.CheckBox();
+            this.btn_Del = new System.Windows.Forms.Button();
+            this.tbMain.SuspendLayout();
+            this.tbRoutine.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdExercise)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBxExercise)).BeginInit();
+            this.tbAddEx.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbxWorkOut
             // 
             this.lbxWorkOut.FormattingEnabled = true;
             this.lbxWorkOut.ItemHeight = 31;
-            this.lbxWorkOut.Location = new System.Drawing.Point(45, 141);
+            this.lbxWorkOut.Location = new System.Drawing.Point(30, 85);
             this.lbxWorkOut.Margin = new System.Windows.Forms.Padding(5);
             this.lbxWorkOut.Name = "lbxWorkOut";
-            this.lbxWorkOut.Size = new System.Drawing.Size(489, 345);
+            this.lbxWorkOut.Size = new System.Drawing.Size(490, 345);
             this.lbxWorkOut.TabIndex = 0;
             this.lbxWorkOut.SelectedIndexChanged += new System.EventHandler(this.lbxWorkOut_SelectedIndexChanged);
             // 
@@ -67,7 +91,7 @@
             // 
             this.lbWrkOut.AutoSize = true;
             this.lbWrkOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbWrkOut.Location = new System.Drawing.Point(51, 38);
+            this.lbWrkOut.Location = new System.Drawing.Point(535, 31);
             this.lbWrkOut.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lbWrkOut.Name = "lbWrkOut";
             this.lbWrkOut.Size = new System.Drawing.Size(281, 46);
@@ -77,7 +101,7 @@
             // btnRun
             // 
             this.btnRun.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.btnRun.Location = new System.Drawing.Point(749, 48);
+            this.btnRun.Location = new System.Drawing.Point(30, 455);
             this.btnRun.Margin = new System.Windows.Forms.Padding(5);
             this.btnRun.Name = "btnRun";
             this.btnRun.Size = new System.Drawing.Size(240, 117);
@@ -93,50 +117,27 @@
             // 
             // lbActivity
             // 
-            this.lbActivity.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbActivity.Location = new System.Drawing.Point(1067, 38);
+            this.lbActivity.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbActivity.Location = new System.Drawing.Point(1600, 2);
             this.lbActivity.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lbActivity.Name = "lbActivity";
-            this.lbActivity.Size = new System.Drawing.Size(1176, 417);
+            this.lbActivity.Size = new System.Drawing.Size(790, 95);
             this.lbActivity.TabIndex = 10;
             this.lbActivity.Text = "Exercise";
-            this.lbActivity.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pBxExercise
-            // 
-            this.pBxExercise.Location = new System.Drawing.Point(24, 532);
-            this.pBxExercise.Margin = new System.Windows.Forms.Padding(5);
-            this.pBxExercise.MaximumSize = new System.Drawing.Size(875, 500);
-            this.pBxExercise.Name = "pBxExercise";
-            this.pBxExercise.Size = new System.Drawing.Size(850, 500);
-            this.pBxExercise.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pBxExercise.TabIndex = 12;
-            this.pBxExercise.TabStop = false;
-            this.pBxExercise.BackgroundImageChanged += new System.EventHandler(this.pBxExercise_BackgroundImageChanged);
+            this.lbActivity.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tmrWork2
             // 
             this.tmrWork2.Interval = 1000;
             this.tmrWork2.Tick += new System.EventHandler(this.tmrWork2_Tick);
             // 
-            // lbTimeTitle
-            // 
-            this.lbTimeTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTimeTitle.Location = new System.Drawing.Point(2400, 775);
-            this.lbTimeTitle.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lbTimeTitle.Name = "lbTimeTitle";
-            this.lbTimeTitle.Size = new System.Drawing.Size(491, 272);
-            this.lbTimeTitle.TabIndex = 13;
-            this.lbTimeTitle.Text = "Time of Exercise";
-            this.lbTimeTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // lbClicker
             // 
             this.lbClicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbClicker.Location = new System.Drawing.Point(2400, 1066);
+            this.lbClicker.Location = new System.Drawing.Point(30, 850);
             this.lbClicker.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lbClicker.Name = "lbClicker";
-            this.lbClicker.Size = new System.Drawing.Size(491, 217);
+            this.lbClicker.Size = new System.Drawing.Size(475, 200);
             this.lbClicker.TabIndex = 14;
             this.lbClicker.Text = "0";
             this.lbClicker.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -145,12 +146,12 @@
             // 
             this.lbExTtlTime.AutoSize = true;
             this.lbExTtlTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbExTtlTime.Location = new System.Drawing.Point(2400, 532);
+            this.lbExTtlTime.Location = new System.Drawing.Point(30, 775);
             this.lbExTtlTime.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lbExTtlTime.MaximumSize = new System.Drawing.Size(800, 76);
-            this.lbExTtlTime.MinimumSize = new System.Drawing.Size(501, 76);
+            this.lbExTtlTime.MinimumSize = new System.Drawing.Size(475, 75);
             this.lbExTtlTime.Name = "lbExTtlTime";
-            this.lbExTtlTime.Size = new System.Drawing.Size(501, 76);
+            this.lbExTtlTime.Size = new System.Drawing.Size(475, 75);
             this.lbExTtlTime.TabIndex = 15;
             this.lbExTtlTime.Text = "Total Exercise Time";
             // 
@@ -162,43 +163,30 @@
             this.lbTime.Name = "lbTime";
             this.lbTime.Size = new System.Drawing.Size(501, 76);
             this.lbTime.TabIndex = 16;
-            this.lbTime.Text = "lbTime";
             this.lbTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lbNextLb
             // 
-            this.lbNextLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbNextLb.Location = new System.Drawing.Point(2397, 55);
+            this.lbNextLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbNextLb.Location = new System.Drawing.Point(850, 120);
             this.lbNextLb.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lbNextLb.Name = "lbNextLb";
-            this.lbNextLb.Size = new System.Drawing.Size(400, 95);
+            this.lbNextLb.Size = new System.Drawing.Size(568, 95);
             this.lbNextLb.TabIndex = 17;
             this.lbNextLb.Text = "Next Exercise";
-            this.lbNextLb.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbNextLb.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // lbNextName
             // 
-            this.lbNextName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.1F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbNextName.Location = new System.Drawing.Point(2224, 217);
+            this.lbNextName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbNextName.Location = new System.Drawing.Point(1600, 115);
             this.lbNextName.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lbNextName.MaximumSize = new System.Drawing.Size(1027, 215);
+            this.lbNextName.MaximumSize = new System.Drawing.Size(1025, 100);
             this.lbNextName.Name = "lbNextName";
-            this.lbNextName.Size = new System.Drawing.Size(677, 215);
+            this.lbNextName.Size = new System.Drawing.Size(790, 100);
             this.lbNextName.TabIndex = 18;
             this.lbNextName.Text = "Next Exercise";
-            this.lbNextName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // grdExercise
-            // 
-            this.grdExercise.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grdExercise.Location = new System.Drawing.Point(3000, 532);
-            this.grdExercise.Margin = new System.Windows.Forms.Padding(5);
-            this.grdExercise.Name = "grdExercise";
-            this.grdExercise.RowHeadersWidth = 51;
-            this.grdExercise.RowTemplate.Height = 24;
-            this.grdExercise.Size = new System.Drawing.Size(749, 968);
-            this.grdExercise.TabIndex = 19;
-            this.grdExercise.SelectionChanged += new System.EventHandler(this.grdExercise_SelectionChanged);
+            this.lbNextName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // tmrMain
             // 
@@ -208,10 +196,10 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(3000, 48);
+            this.label1.Location = new System.Drawing.Point(30, 1100);
             this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(379, 145);
+            this.label1.Size = new System.Drawing.Size(475, 145);
             this.label1.TabIndex = 20;
             this.label1.Text = "Total Run Time";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -219,10 +207,10 @@
             // lbRnTime
             // 
             this.lbRnTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbRnTime.Location = new System.Drawing.Point(3000, 212);
+            this.lbRnTime.Location = new System.Drawing.Point(30, 1250);
             this.lbRnTime.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lbRnTime.Name = "lbRnTime";
-            this.lbRnTime.Size = new System.Drawing.Size(344, 243);
+            this.lbRnTime.Size = new System.Drawing.Size(475, 250);
             this.lbRnTime.TabIndex = 21;
             this.lbRnTime.Text = "0";
             this.lbRnTime.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -230,7 +218,7 @@
             // btnPause
             // 
             this.btnPause.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.btnPause.Location = new System.Drawing.Point(749, 203);
+            this.btnPause.Location = new System.Drawing.Point(30, 600);
             this.btnPause.Margin = new System.Windows.Forms.Padding(5);
             this.btnPause.Name = "btnPause";
             this.btnPause.Size = new System.Drawing.Size(240, 114);
@@ -239,38 +227,343 @@
             this.btnPause.UseVisualStyleBackColor = true;
             this.btnPause.Click += new System.EventHandler(this.btnPause_Click);
             // 
+            // tbMain
+            // 
+            this.tbMain.Controls.Add(this.tbRoutine);
+            this.tbMain.Controls.Add(this.tbAddEx);
+            this.tbMain.Location = new System.Drawing.Point(32, 12);
+            this.tbMain.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbMain.Name = "tbMain";
+            this.tbMain.SelectedIndex = 0;
+            this.tbMain.Size = new System.Drawing.Size(3917, 1724);
+            this.tbMain.TabIndex = 23;
+            this.tbMain.SelectedIndexChanged += new System.EventHandler(this.tbMain_SelectedIndexChanged);
+            // 
+            // tbRoutine
+            // 
+            this.tbRoutine.Controls.Add(this.btn_Del);
+            this.tbRoutine.Controls.Add(this.label2);
+            this.tbRoutine.Controls.Add(this.lbxType);
+            this.tbRoutine.Controls.Add(this.lcCurrEx);
+            this.tbRoutine.Controls.Add(this.grdExercise);
+            this.tbRoutine.Controls.Add(this.pBxExercise);
+            this.tbRoutine.Controls.Add(this.lbRnTime);
+            this.tbRoutine.Controls.Add(this.btnPause);
+            this.tbRoutine.Controls.Add(this.label1);
+            this.tbRoutine.Controls.Add(this.lbWrkOut);
+            this.tbRoutine.Controls.Add(this.lbxWorkOut);
+            this.tbRoutine.Controls.Add(this.lbNextName);
+            this.tbRoutine.Controls.Add(this.lbClicker);
+            this.tbRoutine.Controls.Add(this.lbExTtlTime);
+            this.tbRoutine.Controls.Add(this.btnRun);
+            this.tbRoutine.Controls.Add(this.lbNextLb);
+            this.tbRoutine.Controls.Add(this.lbActivity);
+            this.tbRoutine.Location = new System.Drawing.Point(10, 48);
+            this.tbRoutine.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbRoutine.Name = "tbRoutine";
+            this.tbRoutine.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbRoutine.Size = new System.Drawing.Size(3897, 1666);
+            this.tbRoutine.TabIndex = 0;
+            this.tbRoutine.Text = "Exercise Routine";
+            this.tbRoutine.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(30, 30);
+            this.label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(281, 46);
+            this.label2.TabIndex = 26;
+            this.label2.Text = "Workout Type";
+            // 
+            // lbxType
+            // 
+            this.lbxType.FormattingEnabled = true;
+            this.lbxType.ItemHeight = 31;
+            this.lbxType.Location = new System.Drawing.Point(535, 85);
+            this.lbxType.MinimumSize = new System.Drawing.Size(4, 150);
+            this.lbxType.Name = "lbxType";
+            this.lbxType.Size = new System.Drawing.Size(286, 159);
+            this.lbxType.TabIndex = 25;
+            this.lbxType.SelectedIndexChanged += new System.EventHandler(this.lbxType_SelectedIndexChanged);
+            // 
+            // lcCurrEx
+            // 
+            this.lcCurrEx.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lcCurrEx.Location = new System.Drawing.Point(850, 2);
+            this.lcCurrEx.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lcCurrEx.Name = "lcCurrEx";
+            this.lcCurrEx.Size = new System.Drawing.Size(550, 95);
+            this.lcCurrEx.TabIndex = 24;
+            this.lcCurrEx.Text = "Current Exercise";
+            this.lcCurrEx.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // grdExercise
+            // 
+            this.grdExercise.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grdExercise.Location = new System.Drawing.Point(3072, 246);
+            this.grdExercise.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.grdExercise.Name = "grdExercise";
+            this.grdExercise.RowHeadersWidth = 33;
+            this.grdExercise.RowTemplate.Height = 40;
+            this.grdExercise.Size = new System.Drawing.Size(781, 1326);
+            this.grdExercise.TabIndex = 23;
+            this.grdExercise.SelectionChanged += new System.EventHandler(this.grdExercise_SelectionChanged);
+            // 
+            // pBxExercise
+            // 
+            this.pBxExercise.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pBxExercise.ErrorImage")));
+            this.pBxExercise.InitialImage = ((System.Drawing.Image)(resources.GetObject("pBxExercise.InitialImage")));
+            this.pBxExercise.Location = new System.Drawing.Point(535, 250);
+            this.pBxExercise.Margin = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.pBxExercise.MaximumSize = new System.Drawing.Size(875, 500);
+            this.pBxExercise.MinimumSize = new System.Drawing.Size(800, 450);
+            this.pBxExercise.Name = "pBxExercise";
+            this.pBxExercise.Size = new System.Drawing.Size(850, 500);
+            this.pBxExercise.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.pBxExercise.TabIndex = 13;
+            this.pBxExercise.TabStop = false;
+            this.pBxExercise.BackgroundImageChanged += new System.EventHandler(this.pBxExercise_BackgroundImageChanged);
+            // 
+            // tbAddEx
+            // 
+            this.tbAddEx.Controls.Add(this.txtExName);
+            this.tbAddEx.Controls.Add(this.label3);
+            this.tbAddEx.Controls.Add(this.lbErr);
+            this.tbAddEx.Controls.Add(this.btnExrcs);
+            this.tbAddEx.Controls.Add(this.lbExype);
+            this.tbAddEx.Controls.Add(this.chkNB);
+            this.tbAddEx.Controls.Add(this.chkFB);
+            this.tbAddEx.Controls.Add(this.ChkLG);
+            this.tbAddEx.Controls.Add(this.chKAB);
+            this.tbAddEx.Controls.Add(this.chkUB);
+            this.tbAddEx.Controls.Add(this.chk30);
+            this.tbAddEx.Controls.Add(this.chk20);
+            this.tbAddEx.Controls.Add(this.chk15);
+            this.tbAddEx.Controls.Add(this.lbExtime);
+            this.tbAddEx.Controls.Add(this.chk10);
+            this.tbAddEx.Location = new System.Drawing.Point(10, 48);
+            this.tbAddEx.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbAddEx.Name = "tbAddEx";
+            this.tbAddEx.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tbAddEx.Size = new System.Drawing.Size(3897, 1666);
+            this.tbAddEx.TabIndex = 1;
+            this.tbAddEx.Text = "Exercise Add";
+            this.tbAddEx.UseVisualStyleBackColor = true;
+            // 
+            // txtExName
+            // 
+            this.txtExName.Location = new System.Drawing.Point(1608, 193);
+            this.txtExName.Name = "txtExName";
+            this.txtExName.Size = new System.Drawing.Size(200, 38);
+            this.txtExName.TabIndex = 29;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(1599, 74);
+            this.label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.label3.MaximumSize = new System.Drawing.Size(800, 76);
+            this.label3.MinimumSize = new System.Drawing.Size(501, 76);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(501, 76);
+            this.label3.TabIndex = 28;
+            this.label3.Text = "Exercise Name";
+            // 
+            // lbErr
+            // 
+            this.lbErr.AutoSize = true;
+            this.lbErr.Location = new System.Drawing.Point(1602, 373);
+            this.lbErr.Margin = new System.Windows.Forms.Padding(8, 0, 8, 0);
+            this.lbErr.Name = "lbErr";
+            this.lbErr.Size = new System.Drawing.Size(75, 32);
+            this.lbErr.TabIndex = 27;
+            this.lbErr.Text = "lbErr";
+            // 
+            // btnExrcs
+            // 
+            this.btnExrcs.Location = new System.Drawing.Point(157, 584);
+            this.btnExrcs.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.btnExrcs.Name = "btnExrcs";
+            this.btnExrcs.Size = new System.Drawing.Size(200, 162);
+            this.btnExrcs.TabIndex = 26;
+            this.btnExrcs.Text = "Make Exercise";
+            this.btnExrcs.UseVisualStyleBackColor = true;
+            this.btnExrcs.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // lbExype
+            // 
+            this.lbExype.AutoSize = true;
+            this.lbExype.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbExype.Location = new System.Drawing.Point(1115, 88);
+            this.lbExype.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lbExype.MaximumSize = new System.Drawing.Size(800, 76);
+            this.lbExype.MinimumSize = new System.Drawing.Size(501, 76);
+            this.lbExype.Name = "lbExype";
+            this.lbExype.Size = new System.Drawing.Size(501, 76);
+            this.lbExype.TabIndex = 25;
+            this.lbExype.Text = "Exercise Type";
+            // 
+            // chkNB
+            // 
+            this.chkNB.AutoSize = true;
+            this.chkNB.Location = new System.Drawing.Point(1125, 565);
+            this.chkNB.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.chkNB.Name = "chkNB";
+            this.chkNB.Size = new System.Drawing.Size(184, 36);
+            this.chkNB.TabIndex = 24;
+            this.chkNB.Text = "No Breaks";
+            this.chkNB.UseVisualStyleBackColor = true;
+            this.chkNB.CheckedChanged += new System.EventHandler(this.fnchk_Exercise);
+            // 
+            // chkFB
+            // 
+            this.chkFB.AutoSize = true;
+            this.chkFB.Location = new System.Drawing.Point(1125, 491);
+            this.chkFB.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.chkFB.Name = "chkFB";
+            this.chkFB.Size = new System.Drawing.Size(172, 36);
+            this.chkFB.TabIndex = 23;
+            this.chkFB.Text = "Full Body";
+            this.chkFB.UseVisualStyleBackColor = true;
+            this.chkFB.CheckedChanged += new System.EventHandler(this.fnchk_Exercise);
+            // 
+            // ChkLG
+            // 
+            this.ChkLG.AutoSize = true;
+            this.ChkLG.Location = new System.Drawing.Point(1125, 403);
+            this.ChkLG.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.ChkLG.Name = "ChkLG";
+            this.ChkLG.Size = new System.Drawing.Size(115, 36);
+            this.ChkLG.TabIndex = 22;
+            this.ChkLG.Text = "Legs";
+            this.ChkLG.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.ChkLG.UseVisualStyleBackColor = true;
+            this.ChkLG.CheckedChanged += new System.EventHandler(this.fnchk_Exercise);
+            // 
+            // chKAB
+            // 
+            this.chKAB.AutoSize = true;
+            this.chKAB.Location = new System.Drawing.Point(1125, 322);
+            this.chKAB.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.chKAB.Name = "chKAB";
+            this.chKAB.Size = new System.Drawing.Size(102, 36);
+            this.chKAB.TabIndex = 21;
+            this.chKAB.Text = "Abs";
+            this.chKAB.UseVisualStyleBackColor = true;
+            this.chKAB.CheckedChanged += new System.EventHandler(this.fnchk_Exercise);
+            // 
+            // chkUB
+            // 
+            this.chkUB.AutoSize = true;
+            this.chkUB.Location = new System.Drawing.Point(1125, 234);
+            this.chkUB.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.chkUB.Name = "chkUB";
+            this.chkUB.Size = new System.Drawing.Size(202, 36);
+            this.chkUB.TabIndex = 20;
+            this.chkUB.Text = "Upper Body";
+            this.chkUB.UseVisualStyleBackColor = true;
+            this.chkUB.CheckedChanged += new System.EventHandler(this.fnchk_Exercise);
+            // 
+            // chk30
+            // 
+            this.chk30.AutoSize = true;
+            this.chk30.Location = new System.Drawing.Point(157, 491);
+            this.chk30.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.chk30.Name = "chk30";
+            this.chk30.Size = new System.Drawing.Size(206, 36);
+            this.chk30.TabIndex = 19;
+            this.chk30.Text = "30 Minsutes";
+            this.chk30.UseVisualStyleBackColor = true;
+            this.chk30.CheckedChanged += new System.EventHandler(this.fnchk_Time);
+            // 
+            // chk20
+            // 
+            this.chk20.AutoSize = true;
+            this.chk20.Location = new System.Drawing.Point(157, 403);
+            this.chk20.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.chk20.Name = "chk20";
+            this.chk20.Size = new System.Drawing.Size(192, 36);
+            this.chk20.TabIndex = 18;
+            this.chk20.Text = "20 Minutes";
+            this.chk20.UseVisualStyleBackColor = true;
+            this.chk20.CheckedChanged += new System.EventHandler(this.fnchk_Time);
+            // 
+            // chk15
+            // 
+            this.chk15.AutoSize = true;
+            this.chk15.Location = new System.Drawing.Point(157, 322);
+            this.chk15.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.chk15.Name = "chk15";
+            this.chk15.Size = new System.Drawing.Size(192, 36);
+            this.chk15.TabIndex = 17;
+            this.chk15.Text = "15 Minutes";
+            this.chk15.UseVisualStyleBackColor = true;
+            this.chk15.CheckedChanged += new System.EventHandler(this.fnchk_Time);
+            // 
+            // lbExtime
+            // 
+            this.lbExtime.AutoSize = true;
+            this.lbExtime.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbExtime.Location = new System.Drawing.Point(147, 88);
+            this.lbExtime.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lbExtime.MaximumSize = new System.Drawing.Size(800, 76);
+            this.lbExtime.MinimumSize = new System.Drawing.Size(501, 76);
+            this.lbExtime.Name = "lbExtime";
+            this.lbExtime.Size = new System.Drawing.Size(501, 76);
+            this.lbExtime.TabIndex = 16;
+            this.lbExtime.Text = "Total Exercise Time";
+            // 
+            // chk10
+            // 
+            this.chk10.AutoSize = true;
+            this.chk10.Location = new System.Drawing.Point(157, 234);
+            this.chk10.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.chk10.Name = "chk10";
+            this.chk10.Size = new System.Drawing.Size(192, 36);
+            this.chk10.TabIndex = 0;
+            this.chk10.Text = "10 Minutes";
+            this.chk10.UseVisualStyleBackColor = true;
+            this.chk10.CheckedChanged += new System.EventHandler(this.fnchk_Time);
+            // 
+            // btn_Del
+            // 
+            this.btn_Del.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.btn_Del.Location = new System.Drawing.Point(280, 455);
+            this.btn_Del.Margin = new System.Windows.Forms.Padding(5);
+            this.btn_Del.Name = "btn_Del";
+            this.btn_Del.Size = new System.Drawing.Size(240, 117);
+            this.btn_Del.TabIndex = 27;
+            this.btn_Del.Text = "Delete Workout";
+            this.btn_Del.UseVisualStyleBackColor = true;
+            this.btn_Del.Click += new System.EventHandler(this.btn_Del_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2960, 1679);
-            this.Controls.Add(this.btnPause);
-            this.Controls.Add(this.lbRnTime);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.grdExercise);
-            this.Controls.Add(this.lbNextName);
-            this.Controls.Add(this.lbNextLb);
+            this.ClientSize = new System.Drawing.Size(3844, 2015);
+            this.Controls.Add(this.tbMain);
             this.Controls.Add(this.lbTime);
-            this.Controls.Add(this.lbExTtlTime);
-            this.Controls.Add(this.lbClicker);
-            this.Controls.Add(this.lbTimeTitle);
-            this.Controls.Add(this.pBxExercise);
-            this.Controls.Add(this.lbActivity);
-            this.Controls.Add(this.btnRun);
-            this.Controls.Add(this.lbWrkOut);
-            this.Controls.Add(this.lbxWorkOut);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5);
-            this.MaximumSize = new System.Drawing.Size(3813, 1767);
+            this.MaximumSize = new System.Drawing.Size(10613, 4170);
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(1507, 753);
+            this.MinimumSize = new System.Drawing.Size(3838, 1838);
             this.Name = "Form1";
             this.Text = "Exercise App";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            ((System.ComponentModel.ISupportInitialize)(this.pBxExercise)).EndInit();
+            this.tbMain.ResumeLayout(false);
+            this.tbRoutine.ResumeLayout(false);
+            this.tbRoutine.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdExercise)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBxExercise)).EndInit();
+            this.tbAddEx.ResumeLayout(false);
+            this.tbAddEx.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -281,19 +574,40 @@
         private System.Windows.Forms.Button btnRun;
         private System.Windows.Forms.Timer tmrWrkOut;
         private System.Windows.Forms.Label lbActivity;
-        private System.Windows.Forms.PictureBox pBxExercise;
         private System.Windows.Forms.Timer tmrWork2;
-        private System.Windows.Forms.Label lbTimeTitle;
         private System.Windows.Forms.Label lbClicker;
         private System.Windows.Forms.Label lbExTtlTime;
         private System.Windows.Forms.Label lbTime;
         private System.Windows.Forms.Label lbNextLb;
         private System.Windows.Forms.Label lbNextName;
-        private System.Windows.Forms.DataGridView grdExercise;
         private System.Windows.Forms.Timer tmrMain;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbRnTime;
         private System.Windows.Forms.Button btnPause;
+        private System.Windows.Forms.TabControl tbMain;
+        private System.Windows.Forms.TabPage tbRoutine;
+        private System.Windows.Forms.TabPage tbAddEx;
+        private System.Windows.Forms.PictureBox pBxExercise;
+        private System.Windows.Forms.DataGridView grdExercise;
+        private System.Windows.Forms.Button btnExrcs;
+        private System.Windows.Forms.Label lbExype;
+        private System.Windows.Forms.CheckBox chkNB;
+        private System.Windows.Forms.CheckBox chkFB;
+        private System.Windows.Forms.CheckBox ChkLG;
+        private System.Windows.Forms.CheckBox chKAB;
+        private System.Windows.Forms.CheckBox chkUB;
+        private System.Windows.Forms.CheckBox chk30;
+        private System.Windows.Forms.CheckBox chk20;
+        private System.Windows.Forms.CheckBox chk15;
+        private System.Windows.Forms.Label lbExtime;
+        private System.Windows.Forms.CheckBox chk10;
+        private System.Windows.Forms.Label lbErr;
+        private System.Windows.Forms.Label lcCurrEx;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ListBox lbxType;
+        private System.Windows.Forms.TextBox txtExName;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btn_Del;
     }
 }
 
