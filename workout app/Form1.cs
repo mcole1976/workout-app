@@ -48,10 +48,7 @@ namespace workout_app
             InitializeComponent();
 
             fnSetFilesWkt();
-            MongoClient client = new MongoClient(Properties.Settings.Default.MongoDB);
-
-            var dbList = client.ListDatabases().ToList();
-
+            fnSetFood();
             string v = "\\";
             string iFileLoc = Properties.Settings.Default.ExercisePics.ToString() + v + "alternate crunch" + ".jpg";
 
@@ -60,7 +57,16 @@ namespace workout_app
             pBxExercise.SizeMode = PictureBoxSizeMode.AutoSize;
 
         }
+        private void fnSetFood()
+        {
+            List<string> f = new List<string>();
+            f.Add(Properties.Settings.Default.MealTypeA);
+            f.Add(Properties.Settings.Default.MealTypeB);
+            f.Add(Properties.Settings.Default.MealTypeC);
+            f.Add(Properties.Settings.Default.MealTypeD);
 
+            lbxMeal.DataSource = f;
+        }
         private void fnSetFilesWkt()
         {
             //List<string> wn = new List<string>();
@@ -103,9 +109,24 @@ namespace workout_app
         {
             //fnBegin();
             //fnSetExGrid();
+            tmrMain.Stop();
+            timer3 = 0;
             Exercise(mainWOList[0]);
             workouts = null;
             workouts = fnSetDictionary();
+        }
+
+        private void fnSaveData()
+        {
+            
+            int save_ID = (int)lbxWorkOut.SelectedValue;
+            string timeTotEx = lbRnTime.ToString();
+            double time = 0;
+            bool timeTrial = double.TryParse(timeTotEx, out time);
+            int Type = (int)lbxType.SelectedValue;
+            CreateExercises.ExerciseDataFeed.Make_Log_Entry(Type, save_ID, 5);
+
+
         }
 
         private void fnBegin()
@@ -183,40 +204,40 @@ namespace workout_app
 
 
         }
-        public void Exercise(List<ExerciseMethodShareDtNt.WorkOut> w)
-        {
-            tmrWrkOut.Stop();
-            lbActivity.Text = w[0].Name;
-            lbTime.Text = w[0].Time.ToString();
-            string v = "\\";
-            string iFileLoc = Properties.Settings.Default.ExercisePics.ToString() + v + w[0].Name + ".jpg";
-            try
-            {
-                pBxExercise.Load(iFileLoc);
-            }
-            catch (Exception Ex)
-            {
-                pBxExercise.Load(Properties.Settings.Default.ExercisePics.ToString() + v + "Burpee" + ".jpg");
-            }
+        //public void Exercise(List<ExerciseMethodShareDtNt.WorkOut> w)
+        //{
+        //    tmrWrkOut.Stop();
+        //    lbActivity.Text = w[0].Name;
+        //    lbTime.Text = w[0].Time.ToString();
+        //    string v = "\\";
+        //    string iFileLoc = Properties.Settings.Default.ExercisePics.ToString() + v + w[0].Name + ".jpg";
+        //    try
+        //    {
+        //        pBxExercise.Load(iFileLoc);
+        //    }
+        //    catch (Exception Ex)
+        //    {
+        //        pBxExercise.Load(Properties.Settings.Default.ExercisePics.ToString() + v + "Burpee" + ".jpg");
+        //    }
 
-            pBxExercise.SizeMode = PictureBoxSizeMode.AutoSize;
-            tmrWrkOut.Interval = (w[0].Time * 1000);
-            maxcount = w[0].Time;
-            w[0].Complete = true;
+        //    pBxExercise.SizeMode = PictureBoxSizeMode.AutoSize;
+        //    tmrWrkOut.Interval = (w[0].Time * 1000);
+        //    maxcount = w[0].Time;
+        //    w[0].Complete = true;
 
 
-            ExerciseMethodShareDtNt.WorkOut next = (from n in mainWOList where n.Id == w[0].Id + 1 select n).FirstOrDefault();
+        //    ExerciseMethodShareDtNt.WorkOut next = (from n in mainWOList where n.Id == w[0].Id + 1 select n).FirstOrDefault();
 
-            lbNextName.Text = next.Name;
-            // mainWOList.Where(o => o.Id == w.Id).ToList().ForEach(s => s.Complete = true);
-           //wo.RemoveAt(0);
-            timer2 = w[0].Time;
-            SystemSounds.Beep.Play();
-            tmrWrkOut.Start();
-            tmrWork2.Start();
-            tmrMain.Start();
+        //    lbNextName.Text = next.Name;
+        //    // mainWOList.Where(o => o.Id == w.Id).ToList().ForEach(s => s.Complete = true);
+        //   //wo.RemoveAt(0);
+        //    timer2 = w[0].Time;
+        //    SystemSounds.Beep.Play();
+        //    tmrWrkOut.Start();
+        //    tmrWork2.Start();
+        //    tmrMain.Start();
            
-        }
+        //}
         
         private void Exercise(ExerciseMethodShareDtNt.WorkOut w)
         {
@@ -274,8 +295,6 @@ namespace workout_app
            
             timer++;
 
-            //List<ExerciseMethodShareDtNt.WorkOut> w = new List<WorkOut>;
-
             if (wo.Count >  0 )
             {
                 mainWOList = wo;
@@ -298,11 +317,14 @@ namespace workout_app
                
             }
             else
-            {
+            { 
+               
                 lbActivity.Text = "Well Done";
                 string v = "\\";
                 string iFileLoc = Properties.Settings.Default.ExercisePics.ToString() + v + "finish" + ".jpg";
                 pBxExercise.Load(iFileLoc);
+                fnSaveData();
+                tmrWrkOut.Stop();
                 tmrMain.Stop();
                 return;
             }
@@ -1323,6 +1345,43 @@ namespace workout_app
            
             fnBegin();
             
+
+        }
+
+        private void btnFood_Click(object sender, EventArgs e)
+        {
+            ExerciseMethodShareDtNt.Food_Log f = new Food_Log();
+
+            if (txtFoodDesc.Text == "" || String.IsNullOrEmpty(txtFoodDesc.Text))
+            {
+                lbErrFd.Text = "Please Enter a Food Description";
+                return;
+            }
+            if (txtCalCnt.Text.Length <1)
+            {
+                lbErrFd.Text = "Please Enter a Food Description";
+                return;
+                
+            }
+
+            f.Meal_Description = txtFoodDesc.Text;
+            f.Meal = lbxMeal.SelectedValue.ToString();
+            int fRes = 1;
+            bool fBool;
+
+            fBool = int.TryParse(txtCalCnt.Text, out fRes);
+            f.Calorie_Count = fRes;
+
+            CreateExercises.ExerciseDataFeed.Make_Food_Entry(f);
+
+        }
+
+        private void txtCalCnt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) )
+            {
+                e.Handled = true;
+            }
 
         }
     }

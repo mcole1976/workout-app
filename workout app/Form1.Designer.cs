@@ -47,6 +47,7 @@
             this.btnPause = new System.Windows.Forms.Button();
             this.tbMain = new System.Windows.Forms.TabControl();
             this.tbRoutine = new System.Windows.Forms.TabPage();
+            this.btn_Del = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.lbxType = new System.Windows.Forms.ListBox();
             this.lcCurrEx = new System.Windows.Forms.Label();
@@ -68,12 +69,22 @@
             this.chk15 = new System.Windows.Forms.CheckBox();
             this.lbExtime = new System.Windows.Forms.Label();
             this.chk10 = new System.Windows.Forms.CheckBox();
-            this.btn_Del = new System.Windows.Forms.Button();
+            this.tbPerf = new System.Windows.Forms.TabPage();
+            this.tbFood = new System.Windows.Forms.TabPage();
+            this.lbxMeal = new System.Windows.Forms.ListBox();
+            this.lbMeal = new System.Windows.Forms.Label();
+            this.lbCalCount = new System.Windows.Forms.Label();
+            this.lbFoodExp = new System.Windows.Forms.Label();
+            this.txtFoodDesc = new System.Windows.Forms.TextBox();
+            this.txtCalCnt = new System.Windows.Forms.TextBox();
+            this.btnFood = new System.Windows.Forms.Button();
+            this.lbErrFd = new System.Windows.Forms.Label();
             this.tbMain.SuspendLayout();
             this.tbRoutine.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdExercise)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBxExercise)).BeginInit();
             this.tbAddEx.SuspendLayout();
+            this.tbFood.SuspendLayout();
             this.SuspendLayout();
             // 
             // lbxWorkOut
@@ -231,6 +242,8 @@
             // 
             this.tbMain.Controls.Add(this.tbRoutine);
             this.tbMain.Controls.Add(this.tbAddEx);
+            this.tbMain.Controls.Add(this.tbPerf);
+            this.tbMain.Controls.Add(this.tbFood);
             this.tbMain.Location = new System.Drawing.Point(32, 12);
             this.tbMain.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tbMain.Name = "tbMain";
@@ -266,6 +279,18 @@
             this.tbRoutine.TabIndex = 0;
             this.tbRoutine.Text = "Exercise Routine";
             this.tbRoutine.UseVisualStyleBackColor = true;
+            // 
+            // btn_Del
+            // 
+            this.btn_Del.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.btn_Del.Location = new System.Drawing.Point(280, 455);
+            this.btn_Del.Margin = new System.Windows.Forms.Padding(5);
+            this.btn_Del.Name = "btn_Del";
+            this.btn_Del.Size = new System.Drawing.Size(240, 117);
+            this.btn_Del.TabIndex = 27;
+            this.btn_Del.Text = "Delete Workout";
+            this.btn_Del.UseVisualStyleBackColor = true;
+            this.btn_Del.Click += new System.EventHandler(this.btn_Del_Click);
             // 
             // label2
             // 
@@ -529,17 +554,102 @@
             this.chk10.UseVisualStyleBackColor = true;
             this.chk10.CheckedChanged += new System.EventHandler(this.fnchk_Time);
             // 
-            // btn_Del
+            // tbPerf
             // 
-            this.btn_Del.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.btn_Del.Location = new System.Drawing.Point(280, 455);
-            this.btn_Del.Margin = new System.Windows.Forms.Padding(5);
-            this.btn_Del.Name = "btn_Del";
-            this.btn_Del.Size = new System.Drawing.Size(240, 117);
-            this.btn_Del.TabIndex = 27;
-            this.btn_Del.Text = "Delete Workout";
-            this.btn_Del.UseVisualStyleBackColor = true;
-            this.btn_Del.Click += new System.EventHandler(this.btn_Del_Click);
+            this.tbPerf.Location = new System.Drawing.Point(10, 48);
+            this.tbPerf.Name = "tbPerf";
+            this.tbPerf.Size = new System.Drawing.Size(3897, 1666);
+            this.tbPerf.TabIndex = 2;
+            this.tbPerf.Text = "Performance";
+            this.tbPerf.UseVisualStyleBackColor = true;
+            // 
+            // tbFood
+            // 
+            this.tbFood.Controls.Add(this.lbErrFd);
+            this.tbFood.Controls.Add(this.btnFood);
+            this.tbFood.Controls.Add(this.txtCalCnt);
+            this.tbFood.Controls.Add(this.txtFoodDesc);
+            this.tbFood.Controls.Add(this.lbFoodExp);
+            this.tbFood.Controls.Add(this.lbCalCount);
+            this.tbFood.Controls.Add(this.lbMeal);
+            this.tbFood.Controls.Add(this.lbxMeal);
+            this.tbFood.Location = new System.Drawing.Point(10, 48);
+            this.tbFood.Name = "tbFood";
+            this.tbFood.Size = new System.Drawing.Size(3897, 1666);
+            this.tbFood.TabIndex = 3;
+            this.tbFood.Text = "Food Log";
+            this.tbFood.UseVisualStyleBackColor = true;
+            // 
+            // lbxMeal
+            // 
+            this.lbxMeal.FormattingEnabled = true;
+            this.lbxMeal.ItemHeight = 31;
+            this.lbxMeal.Location = new System.Drawing.Point(181, 91);
+            this.lbxMeal.Name = "lbxMeal";
+            this.lbxMeal.Size = new System.Drawing.Size(170, 252);
+            this.lbxMeal.TabIndex = 0;
+            // 
+            // lbMeal
+            // 
+            this.lbMeal.AutoSize = true;
+            this.lbMeal.Location = new System.Drawing.Point(79, 91);
+            this.lbMeal.Name = "lbMeal";
+            this.lbMeal.Size = new System.Drawing.Size(85, 32);
+            this.lbMeal.TabIndex = 1;
+            this.lbMeal.Text = "Meal:";
+            // 
+            // lbCalCount
+            // 
+            this.lbCalCount.AutoSize = true;
+            this.lbCalCount.Location = new System.Drawing.Point(432, 157);
+            this.lbCalCount.Name = "lbCalCount";
+            this.lbCalCount.Size = new System.Drawing.Size(197, 32);
+            this.lbCalCount.TabIndex = 2;
+            this.lbCalCount.Text = "Calorie Count:";
+            // 
+            // lbFoodExp
+            // 
+            this.lbFoodExp.AutoSize = true;
+            this.lbFoodExp.Location = new System.Drawing.Point(432, 91);
+            this.lbFoodExp.Name = "lbFoodExp";
+            this.lbFoodExp.Size = new System.Drawing.Size(222, 32);
+            this.lbFoodExp.TabIndex = 3;
+            this.lbFoodExp.Text = "Food Explained:";
+            // 
+            // txtFoodDesc
+            // 
+            this.txtFoodDesc.Location = new System.Drawing.Point(686, 91);
+            this.txtFoodDesc.Name = "txtFoodDesc";
+            this.txtFoodDesc.Size = new System.Drawing.Size(200, 38);
+            this.txtFoodDesc.TabIndex = 4;
+            // 
+            // txtCalCnt
+            // 
+            this.txtCalCnt.Location = new System.Drawing.Point(686, 157);
+            this.txtCalCnt.MaxLength = 4;
+            this.txtCalCnt.Name = "txtCalCnt";
+            this.txtCalCnt.Size = new System.Drawing.Size(200, 38);
+            this.txtCalCnt.TabIndex = 5;
+            this.txtCalCnt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCalCnt_KeyPress);
+            // 
+            // btnFood
+            // 
+            this.btnFood.Location = new System.Drawing.Point(686, 232);
+            this.btnFood.Name = "btnFood";
+            this.btnFood.Size = new System.Drawing.Size(200, 92);
+            this.btnFood.TabIndex = 6;
+            this.btnFood.Text = "Save Diary Entry";
+            this.btnFood.UseVisualStyleBackColor = true;
+            this.btnFood.Click += new System.EventHandler(this.btnFood_Click);
+            // 
+            // lbErrFd
+            // 
+            this.lbErrFd.AutoSize = true;
+            this.lbErrFd.Location = new System.Drawing.Point(939, 91);
+            this.lbErrFd.Name = "lbErrFd";
+            this.lbErrFd.Size = new System.Drawing.Size(169, 32);
+            this.lbErrFd.TabIndex = 7;
+            this.lbErrFd.Text = "Result Entry";
             // 
             // Form1
             // 
@@ -563,6 +673,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pBxExercise)).EndInit();
             this.tbAddEx.ResumeLayout(false);
             this.tbAddEx.PerformLayout();
+            this.tbFood.ResumeLayout(false);
+            this.tbFood.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -608,6 +720,16 @@
         private System.Windows.Forms.TextBox txtExName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btn_Del;
+        private System.Windows.Forms.TabPage tbPerf;
+        private System.Windows.Forms.TabPage tbFood;
+        private System.Windows.Forms.TextBox txtCalCnt;
+        private System.Windows.Forms.TextBox txtFoodDesc;
+        private System.Windows.Forms.Label lbFoodExp;
+        private System.Windows.Forms.Label lbCalCount;
+        private System.Windows.Forms.Label lbMeal;
+        private System.Windows.Forms.ListBox lbxMeal;
+        private System.Windows.Forms.Button btnFood;
+        private System.Windows.Forms.Label lbErrFd;
     }
 }
 

@@ -69,5 +69,41 @@ namespace workout_app.Properties {
                 return ((string)(this["MongoDB"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Breakfast")]
+        public string MealTypeA {
+            get {
+                return ((string)(this["MealTypeA"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Lunch")]
+        public string MealTypeB {
+            get {
+                return ((string)(this["MealTypeB"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Evening")]
+        public string MealTypeC {
+            get {
+                return ((string)(this["MealTypeC"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Snack")]
+        public string MealTypeD {
+            get {
+                return ((string)(this["MealTypeD"]));
+            }
+        }
     }
 }
