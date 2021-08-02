@@ -120,11 +120,24 @@ namespace workout_app
         {
             
             int save_ID = (int)lbxWorkOut.SelectedValue;
-            string timeTotEx = lbRnTime.ToString();
-            double time = 0;
-            bool timeTrial = double.TryParse(timeTotEx, out time);
+            string timeTotEx = lbRnTime.Text.ToString();
+            double timeA = 0;
+            double timeB;
+            string[] times = timeTotEx.Split(':');
+
+
+            bool timeTrial = double.TryParse(times[0], out timeA);
+            timeTrial = double.TryParse(times[1], out timeB);
+
+            if (timeB > 21)
+            {
+                timeA++;
+            }
+
+
+
             int Type = (int)lbxType.SelectedValue;
-            CreateExercises.ExerciseDataFeed.Make_Log_Entry(Type, save_ID, 5);
+            CreateExercises.ExerciseDataFeed.Make_Log_Entry(Type, save_ID, timeA);
 
 
         }
@@ -823,12 +836,12 @@ namespace workout_app
                 if (chkNB.Checked)
                 {
                     int r = (timetoRun * 60) / 45;
-                    fnSetExerciseDetails(r, breakInterval, exType, aiEx, currExs);
+                    fnSetExerciseDetails(r, breakInterval, exType, aiEx, currExs, timetoRun);
                 }
                 else
                 {
                     int r = timetoRun * 2;
-                    fnSetExerciseDetails(r, breakInterval, exType, aiEx, currExs);
+                    fnSetExerciseDetails(r, breakInterval, exType, aiEx, currExs, timetoRun);
                 }
             }
             else if (timetoRun == 20)
@@ -836,12 +849,12 @@ namespace workout_app
                 if (chkNB.Checked)
                 {
                     int r = (timetoRun * 60) / 40;
-                    fnSetExerciseDetails(r, breakInterval, exType, aiEx, currExs);
+                    fnSetExerciseDetails(r, breakInterval, exType, aiEx, currExs, timetoRun);
                 }
                 else
                 {
                     int r = timetoRun * 2;
-                    fnSetExerciseDetails(r, breakInterval, exType, aiEx, currExs);
+                    fnSetExerciseDetails(r, breakInterval, exType, aiEx, currExs, timetoRun);
                 }
             }
             else if (timetoRun == 15)
@@ -849,12 +862,12 @@ namespace workout_app
                 if (chkNB.Checked)
                 {
                     int r = (timetoRun * 60) / 45;
-                    fnSetExerciseDetails(r, breakInterval, exType, aiEx, currExs);
+                    fnSetExerciseDetails(r, breakInterval, exType, aiEx, currExs, timetoRun);
                 }
                 else
                 {
                     int r = timetoRun * 2;
-                    fnSetExerciseDetails(r, breakInterval, exType, aiEx, currExs);
+                    fnSetExerciseDetails(r, breakInterval, exType, aiEx, currExs, timetoRun);
                 }
             }
             else if (timetoRun == 10)
@@ -862,12 +875,12 @@ namespace workout_app
                 if (chkNB.Checked)
                 {
                     int r = (timetoRun * 60) / 40;
-                    fnSetExerciseDetails(r, breakInterval, exType, aiEx, currExs);
+                    fnSetExerciseDetails(r, breakInterval, exType, aiEx, currExs, timetoRun);
                 }
                 else
                 {
                     int r = timetoRun * 2;
-                    fnSetExerciseDetails(r, breakInterval, exType, aiEx, currExs);
+                    fnSetExerciseDetails(r, breakInterval, exType, aiEx, currExs, timetoRun);
                 }
             }
 
@@ -904,25 +917,25 @@ namespace workout_app
 
         }
 
-        private void fnwriteXML(int ExID, string fileloc)
-        {
-            lbErr.Text = "";
+        //private void fnwriteXML(int ExID, string fileloc)
+        //{
+        //    lbErr.Text = "";
 
-            CreateExercises.ExerciseDataFeed.Make_Exercise_Regiment(ExID, fileloc);
+        //    CreateExercises.ExerciseDataFeed.Make_Exercise_Regiment(ExID, fileloc);
 
 
-            foreach (ExerciseMethodShareDtNt.WorkOut w in wo)
-            {
-                CreateExercises.ExerciseDataFeed.Make_Regiment_Record(0, w);
-                CreateExercises.ExerciseDataFeed.Make_Result_Base(w, ExID , fileloc);
-            }
-            //wo.Clear();
-            //counter = 0;
-            lbErr.Text = "Current Routine Completed and Made";
+        //    foreach (ExerciseMethodShareDtNt.WorkOut w in wo)
+        //    {
+        //        CreateExercises.ExerciseDataFeed.Make_Regiment_Record(0, w);
+        //        CreateExercises.ExerciseDataFeed.Make_Result_Base(w, ExID , fileloc);
+        //    }
+        //    //wo.Clear();
+        //    //counter = 0;
+        //    lbErr.Text = "Current Routine Completed and Made";
             
-        }
+        //}
 
-        private void fnSetExerciseDetails(int r, List<int> bi, KeyValuePair<int,string> exType, List<string> aiEx, List<string> curr)
+        private void fnSetExerciseDetails(int r, List<int> bi, KeyValuePair<int,string> exType, List<string> aiEx, List<string> curr, int timeToRun)
         {
             List<string> currExs = curr;
             int totalTime = r;
@@ -935,7 +948,7 @@ namespace workout_app
                 currExs.Distinct().ToList();
             }
 
-            CreateExercises.ExerciseDataFeed.Make_Exercise_Regiment(exType.Key, txtExName.Text);
+            CreateExercises.ExerciseDataFeed.Make_Exercise_Regiment(exType.Key, txtExName.Text, timeToRun);
             while (r > 0)
             {
                 ExerciseMethodShareDtNt.WorkOut w = new ExerciseMethodShareDtNt.WorkOut();
@@ -1374,6 +1387,12 @@ namespace workout_app
 
             CreateExercises.ExerciseDataFeed.Make_Food_Entry(f);
 
+            txtFoodDesc.Text = "";
+            txtCalCnt.Text = "0";
+
+
+            lbErrFd.Text = " You Added a log Entry for " + f.Meal + " of a " + f.Meal_Description + " summing to a calorie count of " + f.Calorie_Count.ToString();
+
         }
 
         private void txtCalCnt_KeyPress(object sender, KeyPressEventArgs e)
@@ -1382,6 +1401,11 @@ namespace workout_app
             {
                 e.Handled = true;
             }
+
+        }
+
+        private void tbRoutine_Click(object sender, EventArgs e)
+        {
 
         }
     }

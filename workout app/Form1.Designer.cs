@@ -132,7 +132,7 @@
             this.lbActivity.Location = new System.Drawing.Point(1600, 2);
             this.lbActivity.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lbActivity.Name = "lbActivity";
-            this.lbActivity.Size = new System.Drawing.Size(790, 95);
+            this.lbActivity.Size = new System.Drawing.Size(1450, 95);
             this.lbActivity.TabIndex = 10;
             this.lbActivity.Text = "Exercise";
             this.lbActivity.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -192,9 +192,9 @@
             this.lbNextName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbNextName.Location = new System.Drawing.Point(1600, 115);
             this.lbNextName.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.lbNextName.MaximumSize = new System.Drawing.Size(1025, 100);
+            this.lbNextName.MaximumSize = new System.Drawing.Size(1550, 100);
             this.lbNextName.Name = "lbNextName";
-            this.lbNextName.Size = new System.Drawing.Size(790, 100);
+            this.lbNextName.Size = new System.Drawing.Size(1450, 100);
             this.lbNextName.TabIndex = 18;
             this.lbNextName.Text = "Next Exercise";
             this.lbNextName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -279,6 +279,7 @@
             this.tbRoutine.TabIndex = 0;
             this.tbRoutine.Text = "Exercise Routine";
             this.tbRoutine.UseVisualStyleBackColor = true;
+            this.tbRoutine.Click += new System.EventHandler(this.tbRoutine_Click);
             // 
             // btn_Del
             // 
