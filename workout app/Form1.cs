@@ -1384,7 +1384,10 @@ namespace workout_app
 
             fBool = int.TryParse(txtCalCnt.Text, out fRes);
             f.Calorie_Count = fRes;
+            DateTime dt = DateTime.Now;
+            DateTime ut = DateTime.SpecifyKind(dt, DateTimeKind.Utc);
 
+            f.Date = ut;
             CreateExercises.ExerciseDataFeed.Make_Food_Entry(f);
 
             txtFoodDesc.Text = "";
