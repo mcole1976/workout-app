@@ -180,7 +180,7 @@ namespace workout_app
             foreach (KeyValuePair<int, string> k in workoutNames)
             {
 
-                string loc = "";
+
                 if (counter == key)
                 {
                     //loc = Properties.Settings.Default.XMLLibrary + @"\" + k.Value;

@@ -71,19 +71,23 @@
             this.chk10 = new System.Windows.Forms.CheckBox();
             this.tbPerf = new System.Windows.Forms.TabPage();
             this.tbFood = new System.Windows.Forms.TabPage();
-            this.lbxMeal = new System.Windows.Forms.ListBox();
-            this.lbMeal = new System.Windows.Forms.Label();
-            this.lbCalCount = new System.Windows.Forms.Label();
-            this.lbFoodExp = new System.Windows.Forms.Label();
-            this.txtFoodDesc = new System.Windows.Forms.TextBox();
-            this.txtCalCnt = new System.Windows.Forms.TextBox();
-            this.btnFood = new System.Windows.Forms.Button();
             this.lbErrFd = new System.Windows.Forms.Label();
+            this.btnFood = new System.Windows.Forms.Button();
+            this.txtCalCnt = new System.Windows.Forms.TextBox();
+            this.txtFoodDesc = new System.Windows.Forms.TextBox();
+            this.lbFoodExp = new System.Windows.Forms.Label();
+            this.lbCalCount = new System.Windows.Forms.Label();
+            this.lbMeal = new System.Windows.Forms.Label();
+            this.lbxMeal = new System.Windows.Forms.ListBox();
+            this.lbDtPrf = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.formsPlot1 = new ScottPlot.FormsPlot();
             this.tbMain.SuspendLayout();
             this.tbRoutine.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdExercise)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBxExercise)).BeginInit();
             this.tbAddEx.SuspendLayout();
+            this.tbPerf.SuspendLayout();
             this.tbFood.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -557,6 +561,9 @@
             // 
             // tbPerf
             // 
+            this.tbPerf.Controls.Add(this.formsPlot1);
+            this.tbPerf.Controls.Add(this.listBox1);
+            this.tbPerf.Controls.Add(this.lbDtPrf);
             this.tbPerf.Location = new System.Drawing.Point(10, 48);
             this.tbPerf.Name = "tbPerf";
             this.tbPerf.Size = new System.Drawing.Size(3897, 1666);
@@ -581,57 +588,14 @@
             this.tbFood.Text = "Food Log";
             this.tbFood.UseVisualStyleBackColor = true;
             // 
-            // lbxMeal
+            // lbErrFd
             // 
-            this.lbxMeal.FormattingEnabled = true;
-            this.lbxMeal.ItemHeight = 31;
-            this.lbxMeal.Location = new System.Drawing.Point(181, 91);
-            this.lbxMeal.Name = "lbxMeal";
-            this.lbxMeal.Size = new System.Drawing.Size(170, 252);
-            this.lbxMeal.TabIndex = 0;
-            // 
-            // lbMeal
-            // 
-            this.lbMeal.AutoSize = true;
-            this.lbMeal.Location = new System.Drawing.Point(79, 91);
-            this.lbMeal.Name = "lbMeal";
-            this.lbMeal.Size = new System.Drawing.Size(85, 32);
-            this.lbMeal.TabIndex = 1;
-            this.lbMeal.Text = "Meal:";
-            // 
-            // lbCalCount
-            // 
-            this.lbCalCount.AutoSize = true;
-            this.lbCalCount.Location = new System.Drawing.Point(432, 157);
-            this.lbCalCount.Name = "lbCalCount";
-            this.lbCalCount.Size = new System.Drawing.Size(197, 32);
-            this.lbCalCount.TabIndex = 2;
-            this.lbCalCount.Text = "Calorie Count:";
-            // 
-            // lbFoodExp
-            // 
-            this.lbFoodExp.AutoSize = true;
-            this.lbFoodExp.Location = new System.Drawing.Point(432, 91);
-            this.lbFoodExp.Name = "lbFoodExp";
-            this.lbFoodExp.Size = new System.Drawing.Size(222, 32);
-            this.lbFoodExp.TabIndex = 3;
-            this.lbFoodExp.Text = "Food Explained:";
-            // 
-            // txtFoodDesc
-            // 
-            this.txtFoodDesc.Location = new System.Drawing.Point(686, 91);
-            this.txtFoodDesc.Name = "txtFoodDesc";
-            this.txtFoodDesc.Size = new System.Drawing.Size(200, 38);
-            this.txtFoodDesc.TabIndex = 4;
-            // 
-            // txtCalCnt
-            // 
-            this.txtCalCnt.Location = new System.Drawing.Point(686, 157);
-            this.txtCalCnt.MaxLength = 4;
-            this.txtCalCnt.Name = "txtCalCnt";
-            this.txtCalCnt.Size = new System.Drawing.Size(200, 38);
-            this.txtCalCnt.TabIndex = 5;
-            this.txtCalCnt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCalCnt_KeyPress);
+            this.lbErrFd.AutoSize = true;
+            this.lbErrFd.Location = new System.Drawing.Point(939, 91);
+            this.lbErrFd.Name = "lbErrFd";
+            this.lbErrFd.Size = new System.Drawing.Size(169, 32);
+            this.lbErrFd.TabIndex = 7;
+            this.lbErrFd.Text = "Result Entry";
             // 
             // btnFood
             // 
@@ -643,14 +607,84 @@
             this.btnFood.UseVisualStyleBackColor = true;
             this.btnFood.Click += new System.EventHandler(this.btnFood_Click);
             // 
-            // lbErrFd
+            // txtCalCnt
             // 
-            this.lbErrFd.AutoSize = true;
-            this.lbErrFd.Location = new System.Drawing.Point(939, 91);
-            this.lbErrFd.Name = "lbErrFd";
-            this.lbErrFd.Size = new System.Drawing.Size(169, 32);
-            this.lbErrFd.TabIndex = 7;
-            this.lbErrFd.Text = "Result Entry";
+            this.txtCalCnt.Location = new System.Drawing.Point(686, 157);
+            this.txtCalCnt.MaxLength = 4;
+            this.txtCalCnt.Name = "txtCalCnt";
+            this.txtCalCnt.Size = new System.Drawing.Size(200, 38);
+            this.txtCalCnt.TabIndex = 5;
+            this.txtCalCnt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCalCnt_KeyPress);
+            // 
+            // txtFoodDesc
+            // 
+            this.txtFoodDesc.Location = new System.Drawing.Point(686, 91);
+            this.txtFoodDesc.Name = "txtFoodDesc";
+            this.txtFoodDesc.Size = new System.Drawing.Size(200, 38);
+            this.txtFoodDesc.TabIndex = 4;
+            // 
+            // lbFoodExp
+            // 
+            this.lbFoodExp.AutoSize = true;
+            this.lbFoodExp.Location = new System.Drawing.Point(432, 91);
+            this.lbFoodExp.Name = "lbFoodExp";
+            this.lbFoodExp.Size = new System.Drawing.Size(222, 32);
+            this.lbFoodExp.TabIndex = 3;
+            this.lbFoodExp.Text = "Food Explained:";
+            // 
+            // lbCalCount
+            // 
+            this.lbCalCount.AutoSize = true;
+            this.lbCalCount.Location = new System.Drawing.Point(432, 157);
+            this.lbCalCount.Name = "lbCalCount";
+            this.lbCalCount.Size = new System.Drawing.Size(197, 32);
+            this.lbCalCount.TabIndex = 2;
+            this.lbCalCount.Text = "Calorie Count:";
+            // 
+            // lbMeal
+            // 
+            this.lbMeal.AutoSize = true;
+            this.lbMeal.Location = new System.Drawing.Point(79, 91);
+            this.lbMeal.Name = "lbMeal";
+            this.lbMeal.Size = new System.Drawing.Size(85, 32);
+            this.lbMeal.TabIndex = 1;
+            this.lbMeal.Text = "Meal:";
+            // 
+            // lbxMeal
+            // 
+            this.lbxMeal.FormattingEnabled = true;
+            this.lbxMeal.ItemHeight = 31;
+            this.lbxMeal.Location = new System.Drawing.Point(181, 91);
+            this.lbxMeal.Name = "lbxMeal";
+            this.lbxMeal.Size = new System.Drawing.Size(170, 252);
+            this.lbxMeal.TabIndex = 0;
+            // 
+            // lbDtPrf
+            // 
+            this.lbDtPrf.AutoSize = true;
+            this.lbDtPrf.Location = new System.Drawing.Point(52, 54);
+            this.lbDtPrf.Name = "lbDtPrf";
+            this.lbDtPrf.Size = new System.Drawing.Size(75, 32);
+            this.lbDtPrf.TabIndex = 0;
+            this.lbDtPrf.Text = "Date";
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 31;
+            this.listBox1.Location = new System.Drawing.Point(187, 54);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(187, 314);
+            this.listBox1.TabIndex = 1;
+            // 
+            // formsPlot1
+            // 
+            this.formsPlot1.BackColor = System.Drawing.Color.Transparent;
+            this.formsPlot1.Location = new System.Drawing.Point(422, 54);
+            this.formsPlot1.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.formsPlot1.Name = "formsPlot1";
+            this.formsPlot1.Size = new System.Drawing.Size(1067, 715);
+            this.formsPlot1.TabIndex = 2;
             // 
             // Form1
             // 
@@ -674,6 +708,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pBxExercise)).EndInit();
             this.tbAddEx.ResumeLayout(false);
             this.tbAddEx.PerformLayout();
+            this.tbPerf.ResumeLayout(false);
+            this.tbPerf.PerformLayout();
             this.tbFood.ResumeLayout(false);
             this.tbFood.PerformLayout();
             this.ResumeLayout(false);
@@ -731,6 +767,9 @@
         private System.Windows.Forms.ListBox lbxMeal;
         private System.Windows.Forms.Button btnFood;
         private System.Windows.Forms.Label lbErrFd;
+        private ScottPlot.FormsPlot formsPlot1;
+        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Label lbDtPrf;
     }
 }
 
