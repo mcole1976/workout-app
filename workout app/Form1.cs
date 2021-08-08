@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using System.Media;
-using System.Xml;
-using System.Xml.Linq;
+
 using System.IO;
 using ExerciseMethodShareDtNt;
-using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using CreateExercises;
@@ -49,6 +45,8 @@ namespace workout_app
 
             fnSetFilesWkt();
             fnSetFood();
+            fnSetPerfGrid();
+
             string v = "\\";
             string iFileLoc = Properties.Settings.Default.ExercisePics.ToString() + v + "alternate crunch" + ".jpg";
 
@@ -57,6 +55,18 @@ namespace workout_app
             pBxExercise.SizeMode = PictureBoxSizeMode.AutoSize;
 
         }
+
+        private void fnSetPerfGrid()
+        {
+            List<ExerciseMethodShareDtNt.Exercise_Log> el = new List<Exercise_Log>();
+            List<string> d = new List<string>();
+            el = CreateExercises.ExerciseDataFeed.ExerciseLogs();
+
+            d = (from e in el select e.Date.ToString("d")).Distinct().ToList();
+            lbxPerfDt.DataSource = d;
+            int x = 0;
+        }
+
         private void fnSetFood()
         {
             List<string> f = new List<string>();
@@ -66,6 +76,36 @@ namespace workout_app
             f.Add(Properties.Settings.Default.MealTypeD);
 
             lbxMeal.DataSource = f;
+
+
+
+
+            List<Food_Log> fl = new List<Food_Log>();
+            List<Food_Log> flRes = new List<Food_Log>();
+            fl = CreateExercises.ExerciseDataFeed.FoodLogs();
+            ////string dt = lbxPerfDt.SelectedItem.ToString();
+            DateTime d = DateTime.Today;
+
+            DateTime dp1 = new DateTime();
+            //bool dtBool = DateTime.TryParse(dt, out d);
+
+            dp1 = d.AddDays(1);
+
+            flRes = (from exL in fl where exL.Date >= d && exL.Date < dp1 select exL).ToList();
+            List<int> dbl = (from r in flRes select r.Calorie_Count).ToList();
+            List<double> doublesf = dbl.Select<int, double>(i => i).ToList();
+            if (doublesf.Count >= 1)
+            {
+                double[] dbf = doublesf.ToArray();
+                var fPlt = formsPlot2.Plot;
+                ////double[] values = { 778, 283, 184, 76, 43 };
+                var fd = fPlt.AddPie(dbf);
+                fd.ShowValues = true;
+                //double[] db = doubles.ToArray();
+            }
+            //int t = 15;
+
+
         }
         private void fnSetFilesWkt()
         {
@@ -111,6 +151,7 @@ namespace workout_app
             //fnSetExGrid();
             tmrMain.Stop();
             timer3 = 0;
+            lbxWorkOut.Enabled = false;
             Exercise(mainWOList[0]);
             workouts = null;
             workouts = fnSetDictionary();
@@ -169,7 +210,7 @@ namespace workout_app
             lbxWorkOut.DataSource = new BindingSource(workoutNames, null);
             lbxWorkOut.DisplayMember = "Value";
             lbxWorkOut.ValueMember = "Key";
-
+            lbxWorkOut.Enabled = true;
 
             //string workout = lbxWorkOut.SelectedItem.ToString();
             // var kvpRtne = workouts.Where(r => r.Value.Equals(workout));
@@ -301,12 +342,10 @@ namespace workout_app
             tmrMain.Start();
         }
 
-
-
         private void tmrWrkOut_Tick(object sender, EventArgs e)
         {
            
-            timer++;
+            //timer++;
 
             if (wo.Count >  0 )
             {
@@ -336,19 +375,21 @@ namespace workout_app
                 string v = "\\";
                 string iFileLoc = Properties.Settings.Default.ExercisePics.ToString() + v + "finish" + ".jpg";
                 pBxExercise.Load(iFileLoc);
-                fnSaveData();
+                if (lbxWorkOut.Enabled == false)
+                {
+                    fnSaveData();
+                }
+                
                 tmrWrkOut.Stop();
                 tmrMain.Stop();
+                tmrWork2.Stop();
+                lbxWorkOut.Enabled = true;
+                //Application.Run(new Form1());
+                
                 return;
             }
            
         }
-
-        private void pBxExercise_BackgroundImageChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void tmrWork2_Tick(object sender, EventArgs e)
         {
             timer2--;
@@ -397,12 +438,20 @@ namespace workout_app
         private void btnPause_Click(object sender, EventArgs e)
         {
             fnSetFilesWkt();
+            
             workouts = null;
             workouts = fnSetDictionary();
             tmrMain.Stop();
             tmrWork2.Stop();
             tmrWrkOut.Stop();
+            if (lbxWorkOut.Enabled == false)
+            {
+                fnSaveData();
+            }
             fnBegin();
+            fnSetPerfGrid();
+            
+            //lbxWorkOut.Enabled = true;
             lbRnTime.Text = "";
             lbClicker.Text = "";
             string v = "\\";
@@ -889,13 +938,13 @@ namespace workout_app
             //string fileloc = @"C:\Users\marcu\Documents\Code\ExerciseXML\" +  + ".xml";
             //int f = wo.Count;
             //fnwriteXML(exType.Key,txtExName.Text);
-            fnBeginAuto(wo);
+            fnBeginAuto(wo, txtExName.Text, exType);
             Exercise(wo[0]);
            // workouts = null;
           //workouts = fnSetDictionary();
         }
 
-        private void fnBeginAuto(List<WorkOut> wo)
+        private void fnBeginAuto(List<WorkOut> wo, string ExName, KeyValuePair<int,String> kvp)
         {
             grdExercise.Rows.Clear();
             grdExercise.Columns.Clear();
@@ -913,8 +962,38 @@ namespace workout_app
             }
 
             tbMain.SelectedIndex = 0;
+            fnSetFilesWkt();
+            fnSetSelectedIndex(ExName, kvp.Key); ;
 
+        }
 
+        private void fnSetSelectedIndex(string exName, int Type)
+        {
+            Dictionary<int, string> types = CreateExercises.ExerciseDataFeed.Exercise_Types_List();
+            Dictionary<int, string> exDict = CreateExercises.ExerciseDataFeed.Routine_List(Type);
+            int indexCounter = 0;
+            int tCount = 0;
+            foreach(KeyValuePair<int,string> kvp in exDict)
+            {
+                
+                if (kvp.Value == exName)
+                {
+                    foreach(KeyValuePair<int, string> kvpt in types)
+                    {
+                        if(kvpt.Key == Type)
+                        {
+                            lbxType.SelectedIndex = tCount;
+                        }
+                        tCount++;
+                    }
+
+                    lbxWorkOut.SelectedIndex = indexCounter;
+                    lbxWorkOut.Enabled = false;
+                    break;
+                }
+                indexCounter++;
+
+            }
         }
 
         //private void fnwriteXML(int ExID, string fileloc)
@@ -932,7 +1011,7 @@ namespace workout_app
         //    //wo.Clear();
         //    //counter = 0;
         //    lbErr.Text = "Current Routine Completed and Made";
-            
+
         //}
 
         private void fnSetExerciseDetails(int r, List<int> bi, KeyValuePair<int,string> exType, List<string> aiEx, List<string> curr, int timeToRun)
@@ -1395,7 +1474,7 @@ namespace workout_app
 
 
             lbErrFd.Text = " You Added a log Entry for " + f.Meal + " of a " + f.Meal_Description + " summing to a calorie count of " + f.Calorie_Count.ToString();
-
+            fnSetFood();
         }
 
         private void txtCalCnt_KeyPress(object sender, KeyPressEventArgs e)
@@ -1407,9 +1486,30 @@ namespace workout_app
 
         }
 
-        private void tbRoutine_Click(object sender, EventArgs e)
+        private void lbxPerfDt_SelectedIndexChanged(object sender, EventArgs e)
         {
+            List<Exercise_Log> el = new List<Exercise_Log>();
+            List<Exercise_Log> elRes = new List<Exercise_Log>();
+            el = CreateExercises.ExerciseDataFeed.ExerciseLogs();
+            string dt = lbxPerfDt.SelectedItem.ToString();
+            DateTime d = new DateTime();
 
+            DateTime dp1 = new DateTime();
+            bool dtBool = DateTime.TryParse(dt, out d);
+            
+            dp1 = d.AddDays(1);
+
+            elRes = (from exL in el where exL.Date >= d && exL.Date < dp1 select exL).ToList();
+            List<int> dbl = (from r in elRes select r.Exercise_Time).ToList();
+            List<double> doubles = dbl.Select<int, double>(i => i).ToList();
+            
+            double[] db = doubles.ToArray();
+            var plt = formsPlot1.Plot;
+            //double[] values = { 778, 283, 184, 76, 43 };
+            var pie = plt.AddPie(db);
+            pie.ShowValues = true;
+            
+            int t = 15;
         }
     }
 }
