@@ -70,10 +70,15 @@
             this.lbExtime = new System.Windows.Forms.Label();
             this.chk10 = new System.Windows.Forms.CheckBox();
             this.tbPerf = new System.Windows.Forms.TabPage();
+            this.lbPrfCalVal = new System.Windows.Forms.Label();
+            this.lbPrfCal = new System.Windows.Forms.Label();
+            this.lbPrfMinsVal = new System.Windows.Forms.Label();
+            this.lbPrfMins = new System.Windows.Forms.Label();
             this.formsPlot1 = new ScottPlot.FormsPlot();
             this.lbxPerfDt = new System.Windows.Forms.ListBox();
             this.lbDtPrf = new System.Windows.Forms.Label();
             this.tbFood = new System.Windows.Forms.TabPage();
+            this.formsPlot2 = new ScottPlot.FormsPlot();
             this.lbErrFd = new System.Windows.Forms.Label();
             this.btnFood = new System.Windows.Forms.Button();
             this.txtCalCnt = new System.Windows.Forms.TextBox();
@@ -82,7 +87,7 @@
             this.lbCalCount = new System.Windows.Forms.Label();
             this.lbMeal = new System.Windows.Forms.Label();
             this.lbxMeal = new System.Windows.Forms.ListBox();
-            this.formsPlot2 = new ScottPlot.FormsPlot();
+            this.formsPlot3 = new ScottPlot.FormsPlot();
             this.tbMain.SuspendLayout();
             this.tbRoutine.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdExercise)).BeginInit();
@@ -560,6 +565,10 @@
             // 
             // tbPerf
             // 
+            this.tbPerf.Controls.Add(this.lbPrfCalVal);
+            this.tbPerf.Controls.Add(this.lbPrfCal);
+            this.tbPerf.Controls.Add(this.lbPrfMinsVal);
+            this.tbPerf.Controls.Add(this.lbPrfMins);
             this.tbPerf.Controls.Add(this.formsPlot1);
             this.tbPerf.Controls.Add(this.lbxPerfDt);
             this.tbPerf.Controls.Add(this.lbDtPrf);
@@ -569,6 +578,42 @@
             this.tbPerf.TabIndex = 2;
             this.tbPerf.Text = "Performance";
             this.tbPerf.UseVisualStyleBackColor = true;
+            // 
+            // lbPrfCalVal
+            // 
+            this.lbPrfCalVal.AutoSize = true;
+            this.lbPrfCalVal.Location = new System.Drawing.Point(1789, 166);
+            this.lbPrfCalVal.Name = "lbPrfCalVal";
+            this.lbPrfCalVal.Size = new System.Drawing.Size(31, 32);
+            this.lbPrfCalVal.TabIndex = 6;
+            this.lbPrfCalVal.Text = "0";
+            // 
+            // lbPrfCal
+            // 
+            this.lbPrfCal.AutoSize = true;
+            this.lbPrfCal.Location = new System.Drawing.Point(1554, 184);
+            this.lbPrfCal.Name = "lbPrfCal";
+            this.lbPrfCal.Size = new System.Drawing.Size(191, 32);
+            this.lbPrfCal.TabIndex = 5;
+            this.lbPrfCal.Text = "Total Calories";
+            // 
+            // lbPrfMinsVal
+            // 
+            this.lbPrfMinsVal.AutoSize = true;
+            this.lbPrfMinsVal.Location = new System.Drawing.Point(1789, 84);
+            this.lbPrfMinsVal.Name = "lbPrfMinsVal";
+            this.lbPrfMinsVal.Size = new System.Drawing.Size(31, 32);
+            this.lbPrfMinsVal.TabIndex = 4;
+            this.lbPrfMinsVal.Text = "0";
+            // 
+            // lbPrfMins
+            // 
+            this.lbPrfMins.AutoSize = true;
+            this.lbPrfMins.Location = new System.Drawing.Point(1548, 84);
+            this.lbPrfMins.Name = "lbPrfMins";
+            this.lbPrfMins.Size = new System.Drawing.Size(186, 32);
+            this.lbPrfMins.TabIndex = 3;
+            this.lbPrfMins.Text = "Total Minutes";
             // 
             // formsPlot1
             // 
@@ -600,6 +645,7 @@
             // 
             // tbFood
             // 
+            this.tbFood.Controls.Add(this.formsPlot3);
             this.tbFood.Controls.Add(this.formsPlot2);
             this.tbFood.Controls.Add(this.lbErrFd);
             this.tbFood.Controls.Add(this.btnFood);
@@ -616,10 +662,20 @@
             this.tbFood.Text = "Food Log";
             this.tbFood.UseVisualStyleBackColor = true;
             // 
+            // formsPlot2
+            // 
+            this.formsPlot2.BackColor = System.Drawing.Color.Transparent;
+            this.formsPlot2.Location = new System.Drawing.Point(1213, 91);
+            this.formsPlot2.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.formsPlot2.Name = "formsPlot2";
+            this.formsPlot2.Size = new System.Drawing.Size(1067, 715);
+            this.formsPlot2.TabIndex = 8;
+            this.formsPlot2.Tag = "fffff";
+            // 
             // lbErrFd
             // 
             this.lbErrFd.AutoSize = true;
-            this.lbErrFd.Location = new System.Drawing.Point(939, 91);
+            this.lbErrFd.Location = new System.Drawing.Point(165, 523);
             this.lbErrFd.Name = "lbErrFd";
             this.lbErrFd.Size = new System.Drawing.Size(169, 32);
             this.lbErrFd.TabIndex = 7;
@@ -687,14 +743,14 @@
             this.lbxMeal.Size = new System.Drawing.Size(170, 252);
             this.lbxMeal.TabIndex = 0;
             // 
-            // formsPlot2
+            // formsPlot3
             // 
-            this.formsPlot2.BackColor = System.Drawing.Color.Transparent;
-            this.formsPlot2.Location = new System.Drawing.Point(1213, 91);
-            this.formsPlot2.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
-            this.formsPlot2.Name = "formsPlot2";
-            this.formsPlot2.Size = new System.Drawing.Size(1067, 715);
-            this.formsPlot2.TabIndex = 8;
+            this.formsPlot3.BackColor = System.Drawing.Color.Transparent;
+            this.formsPlot3.Location = new System.Drawing.Point(425, 869);
+            this.formsPlot3.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
+            this.formsPlot3.Name = "formsPlot3";
+            this.formsPlot3.Size = new System.Drawing.Size(2280, 715);
+            this.formsPlot3.TabIndex = 9;
             // 
             // Form1
             // 
@@ -781,6 +837,11 @@
         private System.Windows.Forms.ListBox lbxPerfDt;
         private System.Windows.Forms.Label lbDtPrf;
         private ScottPlot.FormsPlot formsPlot2;
+        private System.Windows.Forms.Label lbPrfCalVal;
+        private System.Windows.Forms.Label lbPrfCal;
+        private System.Windows.Forms.Label lbPrfMinsVal;
+        private System.Windows.Forms.Label lbPrfMins;
+        private ScottPlot.FormsPlot formsPlot3;
     }
 }
 

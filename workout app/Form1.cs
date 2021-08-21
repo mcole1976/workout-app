@@ -53,12 +53,17 @@ namespace workout_app
         private void fnSetPerfGrid()
         {
             List<ExerciseMethodShareDtNt.Exercise_Log> el = new List<Exercise_Log>();
+            List<ExerciseMethodShareDtNt.Exercise_Log> elA = new List<Exercise_Log>();
             List<string> d = new List<string>();
             el = CreateExercises.ExerciseDataFeed.ExerciseLogs();
+            DateTime dt = DateTime.UtcNow;
+            DateTime dtDA = dt.AddDays(-10);
 
-            d = (from e in el select e.Date.ToString("d")).Distinct().ToList();
+            elA = (from j in el where j.Date >= dtDA select j).ToList();
+            //elA = el.Select(j => j.Date > dtDA).ToList();
+            d = (from e in elA select e.Date.ToString("d")).Distinct().ToList();
             lbxPerfDt.DataSource = d;
-            int x = 0;
+            
         }
 
         private void fnSetFood()
@@ -73,6 +78,7 @@ namespace workout_app
 
             List<Food_Log> fl = new List<Food_Log>();
             List<Food_Log> flRes = new List<Food_Log>();
+            List<Food_Log> flResB = new List<Food_Log>();
             fl = CreateExercises.ExerciseDataFeed.FoodLogs();
             ////string dt = lbxPerfDt.SelectedItem.ToString();
             DateTime d = DateTime.Today;
@@ -84,17 +90,69 @@ namespace workout_app
 
             flRes = (from exL in fl where exL.Date >= d && exL.Date < dp1 select exL).ToList();
             List<int> dbl = (from r in flRes select r.Calorie_Count).ToList();
+            List<string> mt = (from r in flRes select r.Meal).ToList();
             List<double> doublesf = dbl.Select<int, double>(i => i).ToList();
+            string[] meal = mt.ToArray();
             if (doublesf.Count >= 1)
             {
                 double[] dbf = doublesf.ToArray();
                 var fPlt = formsPlot2.Plot;
-                ////double[] values = { 778, 283, 184, 76, 43 };
                 var fd = fPlt.AddPie(dbf);
                 fd.ShowValues = true;
-                //double[] db = doubles.ToArray();
+                fd.SliceLabels = meal;
+                fd.ShowLabels = true;
+                //fPlt.Legend();
             }
-            //int t = 15;
+
+            var pltA = formsPlot3.Plot;
+            int counter = -10;
+            int posCounter = 1;
+            DateTime dt = DateTime.UtcNow;
+            DateTime dtDA = dt.AddDays(-counter);
+
+            
+
+
+            double loopPos = 1;
+            List<string> dtTS = new List<string>();
+            List<double> counts = new List<double>();
+            List<double> totals = new List<double>();
+            //List<string> mt = (from r in flRes select r.Meal_Description).ToList();
+            List<double> doublesfloop = dbl.Select<int, double>(i => i).ToList();
+            while (counter <= 0)
+            {
+                DateTime dpLoop = new DateTime();
+                string dateString = "";
+                dtDA = dt.AddDays(counter);
+                dateString = dtDA.ToString("d");
+                dtDA = DateTime.Parse(dateString);
+                dpLoop = dtDA.AddDays(1);
+
+                dtTS.Add(dtDA.ToString("d"));
+                flResB = (from exL in fl where exL.Date >= dtDA && exL.Date < dpLoop select exL).ToList();
+                int calTot = flResB.Select(x => x.Calorie_Count).Sum();
+                double tp = 0;
+                //bool t = double.TryParse(calTot.ToString(), out tp);
+                tp = Convert.ToDouble(calTot);
+                totals.Add(tp);
+                counts.Add(loopPos);
+                loopPos++;
+                counter++;
+
+            }
+            int tt = 77;
+            double[] values = totals.ToArray();
+            double[] positions = counts.ToArray();
+            string[] lbls = dtTS.ToArray(); 
+            pltA.AddBar(values, positions);
+            pltA.XTicks(positions, lbls);
+            pltA.SetAxisLimits(yMin: 2);
+
+            //dbA = (from k in flResB select k.Calorie_Count).ToList();
+
+
+
+
         }
 
         private void fnSetFilesWkt()
@@ -1355,6 +1413,14 @@ namespace workout_app
             {
                 txtExName.Focus();
             }
+            else if (tbMain.SelectedIndex == 2)
+            {
+                fnSetPerfGrid();
+            }
+            else if (tbMain.SelectedIndex == 3)
+            {
+                fnSetFood();
+            }
         }
 
         private void btn_Del_Click(object sender, EventArgs e)
@@ -1422,18 +1488,29 @@ namespace workout_app
             bool dtBool = DateTime.TryParse(dt, out d);
 
             dp1 = d.AddDays(1);
+            int CalCount = 0;
+            int TimeCount = 0;
 
+            
             elRes = (from exL in el where exL.Date >= d && exL.Date < dp1 select exL).ToList();
             List<int> dbl = (from r in elRes select r.Exercise_Time).ToList();
+            TimeCount = dbl.Sum();
+            CalCount = elRes.Select(x => x.Calorie_Count).Sum();
+            List<string> labels = (from r in elRes select r.Calorie_Count.ToString()).ToList(); 
             List<double> doubles = dbl.Select<int, double>(i => i).ToList();
 
+            lbPrfMinsVal.Text = TimeCount.ToString();
+            lbPrfCalVal.Text = CalCount.ToString();
+
             double[] db = doubles.ToArray();
+            string[] lbl = labels.ToArray();
             var plt = formsPlot1.Plot;
-            //double[] values = { 778, 283, 184, 76, 43 };
             var pie = plt.AddPie(db);
             pie.ShowValues = true;
-
-            int t = 15;
+            pie.SliceLabels = lbl;
+            pie.ShowLabels = true;
+            //pie.Label = "Calories Burnt and Exerciese Time";
+            //plt.Legend();
         }
     }
 }
