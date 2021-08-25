@@ -17,23 +17,8 @@ namespace workout_app
         private int timer2 = 0;
         private int timer3 = 0;
         private int maxcount = 30;
-        private Dictionary<string, string> workouts = fnSetDictionary();
         private List<ExerciseMethodShareDtNt.WorkOut> wo = new List<ExerciseMethodShareDtNt.WorkOut>();
-        private List<ExerciseMethodShareDtNt.WorkOut> mainWOList = new List<ExerciseMethodShareDtNt.WorkOut>();
-
-        private static Dictionary<string, string> fnSetDictionary()
-        {
-            Dictionary<string, string> workouts = new Dictionary<string, string>();
-
-            string[] workoutNames = Directory.GetFiles(Properties.Settings.Default.XMLLocation);
-            foreach (string a in workoutNames)
-            {
-                workouts.Add(a, a.Split('\\').Last());
-            }
-
-            return workouts;
-        }
-
+        
         public Form1()
         {
             InitializeComponent();
@@ -63,7 +48,6 @@ namespace workout_app
             //elA = el.Select(j => j.Date > dtDA).ToList();
             d = (from e in elA select e.Date.ToString("d")).Distinct().ToList();
             lbxPerfDt.DataSource = d;
-            
         }
 
         private void fnSetFood()
@@ -110,9 +94,6 @@ namespace workout_app
             DateTime dt = DateTime.UtcNow;
             DateTime dtDA = dt.AddDays(-counter);
 
-            
-
-
             double loopPos = 1;
             List<string> dtTS = new List<string>();
             List<double> counts = new List<double>();
@@ -138,21 +119,15 @@ namespace workout_app
                 counts.Add(loopPos);
                 loopPos++;
                 counter++;
-
             }
-            int tt = 77;
             double[] values = totals.ToArray();
             double[] positions = counts.ToArray();
-            string[] lbls = dtTS.ToArray(); 
+            string[] lbls = dtTS.ToArray();
             pltA.AddBar(values, positions);
             pltA.XTicks(positions, lbls);
             pltA.SetAxisLimits(yMin: 2);
 
             //dbA = (from k in flResB select k.Calorie_Count).ToList();
-
-
-
-
         }
 
         private void fnSetFilesWkt()
@@ -194,9 +169,9 @@ namespace workout_app
             tmrMain.Stop();
             timer3 = 0;
             lbxWorkOut.Enabled = false;
-            Exercise(mainWOList[0]);
-            workouts = null;
-            workouts = fnSetDictionary();
+            Exercise(wo[0]);
+            //workouts = null;
+            //workouts = fnSetDictionary();
         }
 
         private void fnSaveData()
@@ -270,56 +245,22 @@ namespace workout_app
             //
         }
 
-        private void fnSetExercisePattern(KeyValuePair<int, string> wo)
+        private void fnSetExercisePattern(KeyValuePair<int, string> pwo)
         {
-            List<ExerciseMethodShareDtNt.WorkOut> wol = new List<ExerciseMethodShareDtNt.WorkOut>();
-            wol = CreateExercises.ExerciseDataFeed.WorkOut_Regiment(wo.Key);
+            //List<ExerciseMethodShareDtNt.WorkOut> wol = new List<ExerciseMethodShareDtNt.WorkOut>();
 
-            mainWOList = wol;
+            wo = CreateExercises.ExerciseDataFeed.WorkOut_Regiment(pwo.Key);
+
             grdExercise.Rows.Clear();
             grdExercise.Columns.Clear();
             grdExercise.Columns.Add("WorkOut", "WorkOut");
             grdExercise.Columns.Add("Time", "Time");
 
-            foreach (ExerciseMethodShareDtNt.WorkOut wk in wol)
+            foreach (ExerciseMethodShareDtNt.WorkOut wk in wo)
             {
                 grdExercise.Rows.Add(wk.Name, wk.Time);
             }
         }
-
-        //public void Exercise(List<ExerciseMethodShareDtNt.WorkOut> w)
-        //{
-        //    tmrWrkOut.Stop();
-        //    lbActivity.Text = w[0].Name;
-        //    lbTime.Text = w[0].Time.ToString();
-        //    string v = "\\";
-        //    string iFileLoc = Properties.Settings.Default.ExercisePics.ToString() + v + w[0].Name + ".jpg";
-        //    try
-        //    {
-        //        pBxExercise.Load(iFileLoc);
-        //    }
-        //    catch (Exception Ex)
-        //    {
-        //        pBxExercise.Load(Properties.Settings.Default.ExercisePics.ToString() + v + "Burpee" + ".jpg");
-        //    }
-
-        //    pBxExercise.SizeMode = PictureBoxSizeMode.AutoSize;
-        //    tmrWrkOut.Interval = (w[0].Time * 1000);
-        //    maxcount = w[0].Time;
-        //    w[0].Complete = true;
-
-        //    ExerciseMethodShareDtNt.WorkOut next = (from n in mainWOList where n.Id == w[0].Id + 1 select n).FirstOrDefault();
-
-        //    lbNextName.Text = next.Name;
-        //    // mainWOList.Where(o => o.Id == w.Id).ToList().ForEach(s => s.Complete = true);
-        //   //wo.RemoveAt(0);
-        //    timer2 = w[0].Time;
-        //    SystemSounds.Beep.Play();
-        //    tmrWrkOut.Start();
-        //    tmrWork2.Start();
-        //    tmrMain.Start();
-
-        //}
 
         private void Exercise(ExerciseMethodShareDtNt.WorkOut w)
         {
@@ -343,7 +284,7 @@ namespace workout_app
             w.Complete = true;
 
             int marker = 0;
-            foreach (ExerciseMethodShareDtNt.WorkOut y in mainWOList)
+            foreach (ExerciseMethodShareDtNt.WorkOut y in wo)
             {
                 if (w.Id == y.Id)
                 {
@@ -353,15 +294,15 @@ namespace workout_app
             }
             try
             {
-                ExerciseMethodShareDtNt.WorkOut next = (from n in mainWOList where n.Id == w.Id + 1 select n).FirstOrDefault();
+                ExerciseMethodShareDtNt.WorkOut next = (from n in wo where n.Id == w.Id + 1 select n).FirstOrDefault();
                 lbNextName.Text = next.Name;
-                mainWOList.RemoveAt(marker);
+                wo.RemoveAt(marker);
                 grdExercise.Rows.Clear();
                 grdExercise.Columns.Clear();
                 grdExercise.Columns.Add("WorkOut", "WorkOut");
                 grdExercise.Columns.Add("Time", "Time");
 
-                foreach (ExerciseMethodShareDtNt.WorkOut wk in mainWOList)
+                foreach (ExerciseMethodShareDtNt.WorkOut wk in wo)
                 {
                     grdExercise.Rows.Add(wk.Name, wk.Time);
                 }
@@ -370,8 +311,6 @@ namespace workout_app
             {
                 lbNextName.Text = "Finished";
             }
-
-            // mainWOList.Where(o => o.Id == w.Id).ToList().ForEach(s => s.Complete = true);
 
             timer2 = w.Time;
             SystemSounds.Beep.Play();
@@ -386,21 +325,21 @@ namespace workout_app
 
             if (wo.Count > 0)
             {
-                mainWOList = wo;
+                //mainWOList = wo;
             }
-            int cnt = (from k in mainWOList where k.Complete == false select k).Count();
+            int cnt = (from k in wo where k.Complete == false select k).Count();
             if (cnt > 0)
             {
                 ExerciseMethodShareDtNt.WorkOut w = new ExerciseMethodShareDtNt.WorkOut();
 
                 try
                 {
-                    w = (from k in mainWOList where k.Complete == false select k).FirstOrDefault();
+                    w = (from k in wo where k.Complete == false select k).FirstOrDefault();
                     Exercise(w);
                 }
                 catch (Exception ex)
                 {
-                    w = (from k in mainWOList where k.Id == wo.Count - 1 select k).FirstOrDefault();
+                    w = (from k in wo where k.Id == wo.Count - 1 select k).FirstOrDefault();
                     wo = null;
                 }
             }
@@ -475,8 +414,8 @@ namespace workout_app
         {
             fnSetFilesWkt();
 
-            workouts = null;
-            workouts = fnSetDictionary();
+            //workouts = null;
+            //workouts = fnSetDictionary();
             tmrMain.Stop();
             tmrWork2.Stop();
             tmrWrkOut.Stop();
@@ -505,8 +444,6 @@ namespace workout_app
 
         private void fnSetExGrid()
         {
-            //List<string> wn = new List<string>();
-            //string nameth = Properties.Settings.Default.XMLLocation.ToString();
 
             int res = 0;
             int counter = 0;
@@ -535,7 +472,6 @@ namespace workout_app
                 string loc = "";
                 if (counter == key)
                 {
-                    //loc = Properties.Settings.Default.XMLLibrary + @"\" + k.Value;
                     routine = k;
                     break;
                 }
@@ -795,42 +731,20 @@ namespace workout_app
         {
             List<string> currExs = new List<string>();
             List<string> aiEx = new List<string>();
-            //int listCount = 0;
-            //int compiledTime = 0;
-            //bool breakfound = false;
 
             // choose all available exercise
             List<ExerciseMethodShareDtNt.ResultBase> rb = CreateExercises.ExerciseDataFeed.ResultList();
-
-            //rb = (from r in rb where r.Exercise_Type == exType select r).ToList();
-
             Dictionary<int, string> exNamesA = CreateExercises.ExerciseDataFeed.Routine_List(exType.Key);
-            //List<string> exercises = new List<string>();
-            //exercises = (from rs in rb select rs.Exercise_Name).Distinct().ToList();
-
-            //List<string> exNames = new List<string>();
-
-            //exNames = (from rEx in rb select rEx.Searched_exercise).Distinct().ToList();
             // divide exercises up
-
             // get a list of Exercises that match Chosen Exercise Type
-
             // get list of exercise routines to pick off exercises
-            //string ExLoc = Properties.Settings.Default.XMLLibrary.ToString();
-            //ExLoc = ExLoc + @"\";
             List<WorkOut> workOutsMain = new List<WorkOut>();
             //List<WorkOut> workOutsB = new List<WorkOut>();
             // loop over each exercise routine
             foreach (KeyValuePair<int, string> s in exNamesA)
             {
                 List<WorkOut> wOUT = new List<WorkOut>();
-
                 wOUT = CreateExercises.ExerciseDataFeed.WorkOut_Regiment(s.Key);
-                //List<string> exercisess = new List<string>();
-                //exercisess = (from r in wOutArr select r.Name).ToList();
-
-                //List<string> ExTypes = new List<string>();
-
                 // breakdown each routine
                 foreach (WorkOut wCheck in wOUT)
                 {
@@ -882,12 +796,9 @@ namespace workout_app
                         }
                     }
                 }
-                //workOutsMain.AddRange(wOUT);
             }
-
             currExs = currExs.Distinct().ToList();
             aiEx = aiEx.Distinct().ToList();
-
             // set exercises according to time
             if (timetoRun == 30)
             {
@@ -941,14 +852,8 @@ namespace workout_app
                     fnSetExerciseDetails(r, breakInterval, exType, aiEx, currExs, timetoRun);
                 }
             }
-
-            //string fileloc = @"C:\Users\marcu\Documents\Code\ExerciseXML\" +  + ".xml";
-            //int f = wo.Count;
-            //fnwriteXML(exType.Key,txtExName.Text);
             fnBeginAuto(wo, txtExName.Text, exType);
             Exercise(wo[0]);
-            // workouts = null;
-            //workouts = fnSetDictionary();
         }
 
         private void fnBeginAuto(List<WorkOut> wo, string ExName, KeyValuePair<int, String> kvp)
@@ -957,7 +862,6 @@ namespace workout_app
             grdExercise.Columns.Clear();
             timer3 = 0;
 
-            mainWOList = wo;
             grdExercise.Rows.Clear();
             grdExercise.Columns.Clear();
             grdExercise.Columns.Add("WorkOut", "WorkOut");
@@ -970,7 +874,7 @@ namespace workout_app
 
             tbMain.SelectedIndex = 0;
             fnSetFilesWkt();
-            fnSetSelectedIndex(ExName, kvp.Key); ;
+            fnSetSelectedIndex(ExName, kvp.Key);
         }
 
         private void fnSetSelectedIndex(string exName, int Type)
@@ -999,24 +903,6 @@ namespace workout_app
                 indexCounter++;
             }
         }
-
-        //private void fnwriteXML(int ExID, string fileloc)
-        //{
-        //    lbErr.Text = "";
-
-        //    CreateExercises.ExerciseDataFeed.Make_Exercise_Regiment(ExID, fileloc);
-
-        //    foreach (ExerciseMethodShareDtNt.WorkOut w in wo)
-        //    {
-        //        CreateExercises.ExerciseDataFeed.Make_Regiment_Record(0, w);
-        //        CreateExercises.ExerciseDataFeed.Make_Result_Base(w, ExID , fileloc);
-        //    }
-        //    //wo.Clear();
-        //    //counter = 0;
-        //    lbErr.Text = "Current Routine Completed and Made";
-
-        //}
-
         private void fnSetExerciseDetails(int r, List<int> bi, KeyValuePair<int, string> exType, List<string> aiEx, List<string> curr, int timeToRun)
         {
             List<string> currExs = curr;
@@ -1491,12 +1377,11 @@ namespace workout_app
             int CalCount = 0;
             int TimeCount = 0;
 
-            
             elRes = (from exL in el where exL.Date >= d && exL.Date < dp1 select exL).ToList();
             List<int> dbl = (from r in elRes select r.Exercise_Time).ToList();
             TimeCount = dbl.Sum();
             CalCount = elRes.Select(x => x.Calorie_Count).Sum();
-            List<string> labels = (from r in elRes select r.Calorie_Count.ToString()).ToList(); 
+            List<string> labels = (from r in elRes select r.Calorie_Count.ToString()).ToList();
             List<double> doubles = dbl.Select<int, double>(i => i).ToList();
 
             lbPrfMinsVal.Text = TimeCount.ToString();
