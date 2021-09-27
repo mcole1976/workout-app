@@ -2,14 +2,11 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="workout_app.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="MusicFiles" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:\Users\marcu\Music</Value>
-    </Setting>
     <Setting Name="ExercisePics" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:\Users\marcu\Pictures\exercises</Value>
+      <Value Profile="(Default)">C:\Users\marcus\Pictures\exercises</Value>
     </Setting>
     <Setting Name="XMLLocation" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">C:\Users\marcu\Documents\Code\ExerciseXML</Value>
+      <Value Profile="(Default)">C:\Users\marcus\Documents\Code\ExerciseXML</Value>
     </Setting>
   </Settings>
 </SettingsFile>

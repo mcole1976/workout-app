@@ -12,7 +12,7 @@ namespace workout_app.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.7.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.10.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -25,16 +25,7 @@ namespace workout_app.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\marcu\\Music")]
-        public string MusicFiles {
-            get {
-                return ((string)(this["MusicFiles"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\marcu\\Pictures\\exercises")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\marcus\\Pictures\\exercises")]
         public string ExercisePics {
             get {
                 return ((string)(this["ExercisePics"]));
@@ -43,7 +34,7 @@ namespace workout_app.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\marcu\\Documents\\Code\\ExerciseXML")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\marcus\\Documents\\Code\\ExerciseXML")]
         public string XMLLocation {
             get {
                 return ((string)(this["XMLLocation"]));
