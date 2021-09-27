@@ -122,16 +122,7 @@ namespace workout_app
                 wol.Add(wOut);
             }
 
-            // int ct = 1;
-            //workout wk = new workout();
-            //while (ct > 0 )
-            //{
-            //    ct = (from c in wol where c.Complete == false select c).Count();
-            //        if (ct > 0)
-            //        {
-            //            wk = (from c in wol where c.Complete == false select c).FirstOrDefault();
-            //        }
-            //fnSetWorkOutExercise( wol);
+            
             mainWOList = wol;
             grdExercise.Rows.Clear();
             grdExercise.Columns.Clear();
@@ -160,7 +151,6 @@ namespace workout_app
             {
                 pBxExercise.Load(Properties.Settings.Default.ExercisePics.ToString() + v + "Burpee" + ".jpg");
             }
-            //pBxExercise.im
             pBxExercise.SizeMode = PictureBoxSizeMode.AutoSize;
             tmrWrkOut.Interval = (w.Time * 1000);
             maxcount = w.Time;
@@ -187,26 +177,6 @@ namespace workout_app
             tmrWork2.Start();
             tmrMain.Start();
         }
-
-        //private void fnsetWorkOutMusic( List<string> musicF)
-        //{
-
-        //    WindowsMediaPlayer w = new WindowsMediaPlayer();
-        //    WMPLib.IWMPPlaylist pl = w.newPlaylist("newL", "");
-        //    //throw new NotImplementedException();
-        //    foreach (string m in musicF )
-        //    {
-        //        //playFile(m);
-        //        // w.newMedia(m);
-        //        pl.appendItem(w.newMedia(m));
-        //        //w.controls.stop();
-        //    }
-        //    w.currentPlaylist = pl;
-        //    w.controls.play();
-            
-            
-        //}
-
 
         private void tmrWrkOut_Tick(object sender, EventArgs e)
         {
@@ -297,12 +267,6 @@ namespace workout_app
 
         private void grdExercise_SelectionChanged(object sender, EventArgs e)
         {
-            
-            //string iFileLoc = Properties.Settings.Default.ExercisePics.ToString() + v + "alternate crunch" + ".jpg";
-
-            //pBxExercise.ImageLocation = iFileLoc;
-
-            //pBxExercise.SizeMode = PictureBoxSizeMode.AutoSize;
             int index = 0;
             string pic = "alternate crunch";
 
